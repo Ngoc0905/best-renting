@@ -1,31 +1,33 @@
 <template>
-  <div>
-   <b-field>
-            <b-input class="container" placeholder="Enter your location" type="text" @keyup.enter="search" v-model="query" icon="magnify"></b-input>
-        </b-field>
-  </div>
+    <div>
+        <div>
+            <SearchAutocomplete v-on:select="onSelect"/>
+        </div>
+        <div>
+            <router-link class="button" to="/review-appartment">Review your appartment!</router-link>
+        </div>
+    </div>
 </template>
 
 <script>
 import api from "../api";
+import SearchAutocomplete from "../components/SearchAutocomplete";
+
 export default {
+  components: { SearchAutocomplete },
   data() {
     return {
-      query: "",
       results: []
     };
   },
-  mounted(){
-    
-    var autocomplete = new google.maps.places.Autocomplete(input);
-  },
-
   methods: {
-    search() {
-      api.search(this.query).then(results => {
-        this.results = results;
-      });
-    }
+      onSelect(place){
+          this.$router.push({name: 'findrenting',
+            params: {
+                lat: place.geometry.location.lat(),
+                lng: place.geometry.location.lng()
+            }});
+      }
   }
 };
 </script>

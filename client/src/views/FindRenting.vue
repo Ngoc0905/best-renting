@@ -1,8 +1,6 @@
 <template>
   <div>
-   <b-field>
-      <b-input class="container" placeholder="Enter your location" type="text" @keyup.enter="search" v-model="query" icon="magnify"></b-input>
-    </b-field>
+    <SearchAutocomplete v-on:select="updateParamsAndReload"/>
     <div id="myMap"></div>
   </div>
 
@@ -10,27 +8,39 @@
 
 <script>
 import api from "../api";
+import SearchAutocomplete from "../components/SearchAutocomplete";
 export default {
+  components: { SearchAutocomplete },
   data() {
     return {
-      query: "",
       results: []
     };
   },
-  mounted: function() {
-    console.log("map: ", google.maps);
-    this.map = new google.maps.Map(document.getElementById("myMap"), {
-      center: { lat: 61.180059, lng: -149.822075 },
-      scrollwheel: false,
-      zoom: 4
-    });
+  watch: {
+    '$route' (to, from) {
+        this.initGoogleMap();
+    }
   },
-
+  mounted: function() {
+    this.initGoogleMap();
+  },
   methods: {
-    search() {
-      api.search(this.query).then(results => {
-        this.results = results;
+    initGoogleMap() {
+      var map = new google.maps.Map(document.getElementById("myMap"), {
+        center: {
+          lat: parseFloat(this.$route.params.lat),
+          lng: parseFloat(this.$route.params.lng)
+        },
+        scrollwheel: false,
+        zoom: 7
       });
+    },
+    updateParamsAndReload(place){
+      this.$router.push({name: 'findrenting',
+        params: {
+            lat: place.geometry.location.lat(),
+            lng: place.geometry.location.lng()
+        }});
     }
   }
 };
@@ -41,7 +51,7 @@ export default {
   width: 750px;
 }
 #myMap {
-    height:300px;
-    width: 100%;
-   }
+  height: 300px;
+  width: 100%;
+}
 </style>

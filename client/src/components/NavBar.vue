@@ -27,6 +27,11 @@
     </div>
 
    <div class="navbar-end">
+     <div class="navbar-item">
+       <p class="control">
+         <router-link class="navbar-item" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
+       </p>
+     </div>
       <div class="navbar-item">
         <div class="field is-grouped" v-if="!$root.user">
           <p class="control">
@@ -34,7 +39,7 @@
            </p>
           <p class="control"> 
             <router-link class="navbar-item" to="/signup" @click.native="isActive=false">Signup</router-link>
-            </p>
+          </p>
         </div>
         <div class="field is-grouped" v-else>
           <p class="control">
