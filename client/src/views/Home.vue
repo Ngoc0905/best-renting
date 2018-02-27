@@ -1,7 +1,7 @@
 <template>
   <div>
    <b-field>
-            <b-input class="container" placeholder="Enter your location" type="text" @keyup.enter="search" v-model="query" icon="magnify"></b-input>
+            <b-input id="places-input" class="container" placeholder="Enter your location" type="text" @keyup.enter="search" v-model="query" icon="magnify"></b-input>
         </b-field>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
     };
   },
   mounted(){
-    
+    var input = document.getElementById("places-input");
     var autocomplete = new google.maps.places.Autocomplete(input);
   },
 
