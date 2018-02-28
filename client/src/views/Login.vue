@@ -18,6 +18,9 @@
             </b-input>
         </b-field>
         <button class="button is-primary">Login</button>
+        <div>
+            <router-link to="/signup">Click here if you don't have an account</router-link>
+        </div>
         </form>
     </section>
 </template>

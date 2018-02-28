@@ -18,6 +18,7 @@ import Guide from "../components/Guide";
 
 export default {
   components: { SearchAutocomplete, Guide },
+  props: ['place'],
   data() {
     return {
       results: []
@@ -35,6 +36,7 @@ export default {
                 lat: place.geometry.location.lat(),
                 lng: place.geometry.location.lng()
             }});
+          
       }
   }
 };

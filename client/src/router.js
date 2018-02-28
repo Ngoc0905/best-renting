@@ -7,7 +7,6 @@ import FindRenting from './views/FindRenting.vue';
 import ReviewAppartment from './views/ReviewAppartment.vue';
 import AdRenting from './views/AdRenting.vue';
 import AdFinding from './views/AdFinding.vue';
-import Rating from "v-rating";
 
 Vue.use(Router);
 
@@ -29,7 +28,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/findrenting/:lat/:lng',
+      path: '/findrenting/:lat?/:lng?',
       name: 'findrenting',
       component: FindRenting
     },
@@ -38,11 +37,10 @@ export default new Router({
       name: 'review-appartment',
       component: ReviewAppartment,
       beforeEnter: (to, from, next) => {
-        // if(this.a.app.$root.user)
-        //   next();
-        // else
-        //   next('/login');
-        next();
+        if(localStorage.getItem('user'))
+          next();
+        else
+          next('/login');
       }
     },
     {

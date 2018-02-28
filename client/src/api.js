@@ -10,15 +10,15 @@ const errHandler = err => {
 };
 
 export default {
-    search(query){
-        return places
-        .get(`/database/search?q=${query}`) // ????
-        .then(res => res.data.results)
-        .catch(error => {
-            console.error(error);
-            throw error;
-        });        
-    },
+    // search(query){
+    //     return places
+    //     .get(`/database/search?q=${query}`) // ????
+    //     .then(res => res.data.results)
+    //     .catch(error => {
+    //         console.error(error);
+    //         throw error;
+    //     });        
+    // },
     signup(userInfo) {
         return service
             .post('/signup', userInfo)
@@ -36,7 +36,7 @@ export default {
                     data
                 } = res; // const data = res.data
                 localStorage.setItem('user', JSON.stringify(data));
-                axios.defaults.headers.common['Authorization'] = 'Bearer' + data.token;
+                axios.defaults.headers.common['Authorization'] = 'Bearer ' + data.token;
                 return data;
             })
             .catch(errHandler);
@@ -59,9 +59,25 @@ export default {
         if (!userData) return false;
         const user = JSON.parse(userData);
         if (user.token && user.name) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer' + user.token;
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + user.token;
             return user;
         }
         return false;
+    },
+
+    saveReview(review){
+        return service.post('/reviews', review).catch(errHandler);
+    },
+    
+    getReviews(place){
+        return service.get('/reviews', {
+            params: {
+                street_number: place.street_number,
+                route: place.route,
+                city: place.city,
+                region: place.region,
+                country: place.country
+            }
+        });
     }
 };
