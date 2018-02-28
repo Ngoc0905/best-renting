@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section class="container">
         <b-notification type="is-danger" has-icon v-if="error">
             {{ error.error }}
         </b-notification>
@@ -51,3 +51,8 @@ export default {
   }
 };
 </script>
+<style>
+.container{
+    width: 500px;
+}
+</style>

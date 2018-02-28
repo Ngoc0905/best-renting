@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import About from './views/About.vue';
 import Signup from './views/Signup.vue';
 import Login from './views/Login.vue';
 import FindRenting from './views/FindRenting.vue';
 import ReviewAppartment from './views/ReviewAppartment.vue';
+import AdRenting from './views/AdRenting.vue';
+import AdFinding from './views/AdFinding.vue';
+import Rating from "v-rating";
 
 Vue.use(Router);
 
@@ -15,11 +17,6 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About
     },
     {
       path: '/signup',
@@ -47,6 +44,16 @@ export default new Router({
         //   next('/login');
         next();
       }
+    },
+    {
+      path: '/adrenting',
+      name: 'adrenting',
+      component: AdRenting
+    },
+    {
+      path: '/adfinding',
+      name: 'adfinding',
+      component: AdFinding
     }
   ]
-})
+});

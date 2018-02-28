@@ -1,11 +1,12 @@
 <template>
-    <div>
+    <div class="container">
         <div>
             <SearchAutocomplete v-on:select="onSelect"/>
         </div>
-        <div>
+        <div class="review">
             <router-link class="button" to="/review-appartment">Review your appartment!</router-link>
         </div>
+        <Guide/>
     </div>
     
 </template>
@@ -13,22 +14,20 @@
 <script>
 import api from "../api";
 import SearchAutocomplete from "../components/SearchAutocomplete";
+import Guide from "../components/Guide";
 
 export default {
-  components: { SearchAutocomplete },
+  components: { SearchAutocomplete, Guide },
   data() {
     return {
       results: []
     };
   },
-<<<<<<< HEAD
   mounted(){
     var input = document.getElementById("places-input");
     var autocomplete = new google.maps.places.Autocomplete(input);
   },
 
-=======
->>>>>>> 88b0a15425d6b95726a51922ba83fd35c970e347
   methods: {
       onSelect(place){
           this.$router.push({name: 'findrenting',
@@ -44,6 +43,9 @@ export default {
 <style>
 .container {
   width: 750px;
+}
+.review{
+  padding: 20px 300px;
 }
 </style>
 

@@ -23,7 +23,7 @@ import NavBar  from './components/NavBar';
 import api from './api';
 
 export default {
-  components: { NavBar },
+  components: { NavBar},
 
   created() {
     const user = api.loadUser();

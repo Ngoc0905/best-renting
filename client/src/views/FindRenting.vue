@@ -17,8 +17,8 @@ export default {
     };
   },
   watch: {
-    '$route' (to, from) {
-        this.initGoogleMap();
+    $route(to, from) {
+      this.initGoogleMap();
     }
   },
   mounted: function() {
@@ -26,21 +26,34 @@ export default {
   },
   methods: {
     initGoogleMap() {
-      var map = new google.maps.Map(document.getElementById("myMap"), {
-        center: {
-          lat: parseFloat(this.$route.params.lat),
-          lng: parseFloat(this.$route.params.lng)
-        },
-        scrollwheel: false,
-        zoom: 7
-      });
+      if (!this.$route.params) {
+        var map = new google.maps.Map(document.getElementById("myMap"), {
+          center: {
+            lat: 48.85661400000001,
+            lng: 2.3522219000000177
+          },
+          scrollwheel: false,
+          zoom: 7
+        });
+      } else {
+        var map = new google.maps.Map(document.getElementById("myMap"), {
+          center: {
+            lat: parseFloat(this.$route.params.lat),
+            lng: parseFloat(this.$route.params.lng)
+          },
+          scrollwheel: false,
+          zoom: 7
+        });
+      }
     },
-    updateParamsAndReload(place){
-      this.$router.push({name: 'findrenting',
+    updateParamsAndReload(place) {
+      this.$router.push({
+        name: "findrenting",
         params: {
-            lat: place.geometry.location.lat(),
-            lng: place.geometry.location.lng()
-        }});
+          lat: place.geometry.location.lat(),
+          lng: place.geometry.location.lng()
+        }
+      });
     }
   }
 };
