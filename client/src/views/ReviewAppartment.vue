@@ -17,7 +17,7 @@
               </b-field>
             </div>
             <b-field label="Comments">
-                <b-input  maxlength="100" type="textarea" v-model="comments">
+                <b-input maxlength="100" type="textarea" v-model="comments">
                 </b-input>
             </b-field>
             <b-field label="Rating District">
@@ -50,7 +50,7 @@ export default {
       number: null,
       floor: null,
       building: null,
-      comment:null,
+      comments:null,
       isSentSuccessfully: false
     };
   },
@@ -65,14 +65,7 @@ export default {
     },
     onSubmit() {
       var review = {
-        address: {
-          street_number: "", // street_number
-          route: "", // route
-          city: "", // locality
-          region: "", // administrative_area_level_1
-          country: "", // country
-          postal: "" // postal_code
-        },
+        address: this.address,
         number: this.number,
         floor: this.floor,
         building: this.building,
@@ -82,37 +75,6 @@ export default {
         ratingLandlord: this.ratingLandlord
       };
 
-      var street_number = this.address.address_components.find(
-        f => f.types.indexOf("street_number") !== -1
-      );
-      if (street_number) review.address.street_number = street_number.long_name;
-
-      var route = this.address.address_components.find(
-        f => f.types.indexOf("route") !== -1
-      );
-      if (route) review.address.route = route.long_name;
-
-      var locality = this.address.address_components.find(
-        f => f.types.indexOf("locality") !== -1
-      );
-      if (locality) review.address.city = locality.long_name;
-
-      var administrative_area_level_1 = this.address.address_components.find(
-        f => f.types.indexOf("administrative_area_level_1") !== -1
-      );
-      if (administrative_area_level_1)
-        review.address.region = administrative_area_level_1.long_name;
-
-      var country = this.address.address_components.find(
-        f => f.types.indexOf("country") !== -1
-      );
-      if (country) review.address.country = country.long_name;
-
-      var postal_code = this.address.address_components.find(
-        f => f.types.indexOf("postal_code") !== -1
-      );
-      if (postal_code) review.address.postal = postal_code.long_name;
-
       api.saveReview(review).then(responseFromServer => {
           this.isSentSuccessfully = true;
       });
@@ -120,7 +82,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .container {
   width: 500px;
 }

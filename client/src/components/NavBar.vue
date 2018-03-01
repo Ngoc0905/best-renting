@@ -42,12 +42,24 @@
           </p>
         </div>
         <div class="field is-grouped" v-else>
-          <p class="control">
-            HI {{ $root.user.name}}
-          </p>
-          <p class="control">
-            <a class="navbar-item" @click="logout">Logout</a>
-          </p>
+          <div class="dropdown is-right is-hoverable">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <span>Hi {{ $root.user.name}}</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <router-link to="/profile" class="dropdown-item">Profile</router-link>
+                <router-link to="/history" class="dropdown-item">History</router-link>
+                <hr class="dropdown-divider">
+                <a class="dropdown-item" @click="logout">Logout</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
    </div>
@@ -77,7 +89,7 @@ export default {
 </script>
 <style>
 .navbar {
-  background-color:rgba(255, 255, 255, .8);
+  background-color: rgba(255, 255, 255, 0.8);
   opacity: 0.6;
 }
 </style>

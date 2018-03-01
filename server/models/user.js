@@ -6,7 +6,9 @@ const {
 
 const userSchema = new Schema({
     name: String,
-    email: String
+    email: String,
+    avatar: String,
+    phone: String
 });
 userSchema.plugin(passportLocalMongoose, {
     usernameField: 'email'

@@ -7,6 +7,8 @@ import FindRenting from './views/FindRenting.vue';
 import ReviewAppartment from './views/ReviewAppartment.vue';
 import AdRenting from './views/AdRenting.vue';
 import AdFinding from './views/AdFinding.vue';
+import Profile from './views/Profile.vue';
+import History from './views/History.vue';
 
 Vue.use(Router);
 
@@ -36,22 +38,38 @@ export default new Router({
       path: '/review-appartment',
       name: 'review-appartment',
       component: ReviewAppartment,
-      beforeEnter: (to, from, next) => {
-        if(localStorage.getItem('user'))
-          next();
-        else
-          next('/login');
-      }
+      beforeEnter: checkLogin
     },
     {
       path: '/adrenting',
       name: 'adrenting',
-      component: AdRenting
+      component: AdRenting,
+      beforeEnter: checkLogin
     },
     {
       path: '/adfinding',
       name: 'adfinding',
-      component: AdFinding
+      component: AdFinding,
+      beforeEnter: checkLogin
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: Profile,
+      beforeEnter: checkLogin
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History,
+      beforeEnter: checkLogin
     }
   ]
 });
+
+function checkLogin(to, from, next) {
+  if(localStorage.getItem('user'))
+    next();
+  else
+    next('/login');
+}

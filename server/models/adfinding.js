@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const AdFindingSchema = new Schema ({
     address: {
-        street_number: Number,
+        street_number: String,
         route: String,
         city: String,
         region: String,
@@ -12,6 +12,8 @@ const AdFindingSchema = new Schema ({
     },
     comments: String,
     contact: String,
+    daterent: Date,
+    rentprice: Number,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

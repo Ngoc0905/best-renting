@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const ReviewSchema = new Schema({
     address: {
-        street_number: Number,
+        street_number: String,
         route: String,
         city: String,
         region: String,

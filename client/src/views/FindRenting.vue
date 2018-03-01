@@ -65,41 +65,7 @@ export default {
       });
     },
     updateParamsAndReload(place) {
-      console.log(place);
-      let obj = {};
-
-      var street_number = place.address_components.find(
-        f => f.types.indexOf("street_number") !== -1
-      );
-      if (street_number) obj.street_number = street_number.long_name;
-
-      var route = place.address_components.find(
-        f => f.types.indexOf("route") !== -1
-      );
-      if (route) obj.route = route.long_name;
-
-      var locality = place.address_components.find(
-        f => f.types.indexOf("locality") !== -1
-      );
-      if (locality) obj.city = locality.long_name;
-
-      var administrative_area_level_1 = place.address_components.find(
-        f => f.types.indexOf("administrative_area_level_1") !== -1
-      );
-      if (administrative_area_level_1)
-        obj.region = administrative_area_level_1.long_name;
-
-      var country = place.address_components.find(
-        f => f.types.indexOf("country") !== -1
-      );
-      if (country) obj.country = country.long_name;
-
-      var postal_code = place.address_components.find(
-        f => f.types.indexOf("postal_code") !== -1
-      );
-      if (postal_code) obj.postal = postal_code.long_name;
-
-      api.getReviews(obj).then(responseFromServer => {
+      api.getReviews(place).then(responseFromServer => {
         console.log(responseFromServer);
         this.results = responseFromServer.data;
       });

@@ -6,8 +6,8 @@ const config = require('../config');
 const AdFinding = require('../models/adfinding');
 
 router.post('/adfinding', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
-    const adfinding = new AdFinging(req.body);
-    review.user = req.user._id;
+    const adfinding = new AdFinding(req.body);
+    adfinding.user = req.user._id;
     AdFinding.create(adfinding, (err) => {
         if (err) return next(err);
         res.json(adfinding);

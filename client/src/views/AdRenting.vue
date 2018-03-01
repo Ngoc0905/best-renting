@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import api from "../api";
 import SearchAutocomplete from "../components/SearchAutocomplete";
 export default {
   components: { SearchAutocomplete },
@@ -48,14 +49,7 @@ export default {
     },
     onSubmit() {
       var adRenting = {
-        address: {
-          street_number: "", // street_number
-          route: "", // route
-          city: "", // locality
-          region: "", // administrative_area_level_1
-          country: "", // country
-          postal: "" // postal_code
-        },
+        address: this.address,
         number: this.number,
         floor: this.floor,
         building: this.building,

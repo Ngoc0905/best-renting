@@ -7,7 +7,7 @@ const AdRenting = require('../models/adrenting');
 
 router.post('/adrenting', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
     const adrenting = new AdRenting(req.body);
-    review.user = req.user._id;
+    adrenting.user = req.user._id;
     AdRenting.create(adrenting, (err) => {
         if (err) return next(err);
         res.json(adrenting);

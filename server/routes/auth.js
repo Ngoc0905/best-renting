@@ -29,7 +29,8 @@ router.post('/login', (req, res, next) => {
                 res.json({
                     token,
                     name: user.name,
-                    email: user.email
+                    email: user.email,
+                    id: user._id
                 });
             }
         });

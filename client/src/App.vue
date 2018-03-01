@@ -4,9 +4,6 @@
      <section class="section">
        <router-view />
      </section>
-     <section class="section">
-       <router-view />
-     </section>
 
     <footer class="footer">
       <div class="container">
@@ -36,7 +33,7 @@ export default {
 </script>
 <style>
  body {
-  background-color: #005A31;
+  /* background-color: #005A31; */
 }
 </style>
 

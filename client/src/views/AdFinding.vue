@@ -24,7 +24,14 @@
     
 </template>
 
+<style scoped>
+.container {
+  width: 505px;
+}
+</style>
+
 <script>
+import api from '../api';
 import SearchAutocomplete from "../components/SearchAutocomplete";
 export default {
   components: { SearchAutocomplete },
@@ -33,7 +40,8 @@ export default {
         address: null,
         rentprice: null,
         comments: null,
-        contact: null
+        contact: null,
+        daterent: null
       };
   },methods: {
     onSelectAddress(place) {
@@ -41,17 +49,11 @@ export default {
     },
     onSubmit() {
       var adFinding = {
-        address: {
-          street_number: "", // street_number
-          route: "", // route
-          city: "", // locality
-          region: "", // administrative_area_level_1
-          country: "", // country
-          postal: "" // postal_code
-        },
+        address: this.address,
         rentprice: this.rentprice,
         comments: this.comments,
-        contact: this.contact
+        contact: this.contact,
+        daterent: this.daterent
       };
       api.saveAdFinding(adFinding).then(responseFromServer => {
         this.isSentSuccessfully = true;
@@ -60,8 +62,3 @@ export default {
   }
 };
 </script>
-<style>
-.container {
-  width: 500px;
-}
-</style>

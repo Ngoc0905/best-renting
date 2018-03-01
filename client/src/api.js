@@ -72,8 +72,20 @@ export default {
         });
     },
 
+    getReviewsByUserId(userId){
+        return service.get(`/users/${userId}/reviews`);
+    },
+
+    getRentingPostsByUserId(userId){
+        return service.get(`/users/${userId}/adrenting`);
+    },
+
+    getFindingPostsByUserId(userId){
+        return service.get(`/users/${userId}/adfinding`);
+    },
+
     saveAdRenting(adrenting){
-        return service.post('/adrenting', review).catch(errHandler);
+        return service.post('/adrenting', adrenting).catch(errHandler);
     },
 
     getAdRentings(place){
@@ -89,7 +101,7 @@ export default {
     },
 
     saveAdFinding(adfinding){
-        return service.post('/adfinding', review).catch(errHandler);
+        return service.post('/adfinding', adfinding).catch(errHandler);
     },
 
     getAdFindings(place){
