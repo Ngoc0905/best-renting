@@ -20,6 +20,8 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const reviewsRoutes = require('./routes/reviews');
+const adrentingsRoutes = require('./routes/adrentings');
+const adfindingsRoutes = require('./routes/adfindings');
 
 const app = express();
 
@@ -67,6 +69,9 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/api', authRoutes);
 app.use('/api', reviewsRoutes);
+app.use('/api', adrentingsRoutes);
+app.use('/api', adfindingsRoutes);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

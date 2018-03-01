@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-const ReviewSchema = new Schema({
+const AdRentingSchema = new Schema ({
     address: {
         street_number: Number,
         route: String,
@@ -13,11 +13,11 @@ const ReviewSchema = new Schema({
     number: Number,
     floor: Number,
     building: String,
-    comments: String,
+    description: String,
+    contact: String,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     }
 });
-
-module.exports = mongoose.model('Review', ReviewSchema);
+module.exports = mongoose.model('AdRenting', AdRentingSchema);

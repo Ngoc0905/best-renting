@@ -10,15 +10,6 @@ const errHandler = err => {
 };
 
 export default {
-    // search(query){
-    //     return places
-    //     .get(`/database/search?q=${query}`) // ????
-    //     .then(res => res.data.results)
-    //     .catch(error => {
-    //         console.error(error);
-    //         throw error;
-    //     });        
-    // },
     signup(userInfo) {
         return service
             .post('/signup', userInfo)
@@ -79,5 +70,39 @@ export default {
                 country: place.country
             }
         });
-    }
+    },
+
+    saveAdRenting(adrenting){
+        return service.post('/adrenting', review).catch(errHandler);
+    },
+
+    getAdRentings(place){
+        return service.get('/adrenting', {
+            params: {
+                street_number: place.street_number,
+                route: place.route,
+                city: place.city,
+                region: place.region,
+                country: place.country
+            }
+        });
+    },
+
+    saveAdFinding(adfinding){
+        return service.post('/adfinding', review).catch(errHandler);
+    },
+
+    getAdFindings(place){
+        return service.get('/adfinding', {
+            params: {
+                street_number: place.street_number,
+                route: place.route,
+                city: place.city,
+                region: place.region,
+                country: place.country
+            }
+        });
+    },
+
+
 };

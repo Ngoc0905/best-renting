@@ -44,7 +44,9 @@ export default {
 
 <style>
 .container {
-  width: 750px;
+  width: 900px;
+  background-color:rgba(255, 255, 255, .8);
+  opacity: 0.6;
 }
 .review{
   padding: 20px 300px;

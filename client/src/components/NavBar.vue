@@ -75,4 +75,11 @@ export default {
   }
 };
 </script>
+<style>
+.navbar {
+  background-color:rgba(255, 255, 255, .8);
+  opacity: 0.6;
+}
+</style>
+
 
