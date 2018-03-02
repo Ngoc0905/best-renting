@@ -31,10 +31,6 @@ export default {
   },
 };
 </script>
-<style>
- body {
-  /* background-color: #005A31; */
-}
-</style>
+
 
 

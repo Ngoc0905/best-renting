@@ -7,6 +7,14 @@ const config = require('../config');
 const Review = require('../models/review');
 const AdFinding = require('../models/adfinding');
 const AdRenting = require('../models/adrenting');
+const User = require('../models/user');
+
+router.get('/users/profile', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
+  User.find({profile: req.params.userId}, (err, profile) => {
+    if(err) return next(err);
+    res.json(profile);
+  });
+});
 
 router.get('/users/:userId/reviews', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
   Review.find({user: req.params.userId}, (err, reviews) => {

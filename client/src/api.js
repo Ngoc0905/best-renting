@@ -83,6 +83,9 @@ export default {
     getFindingPostsByUserId(userId){
         return service.get(`/users/${userId}/adfinding`);
     },
+    getProfileByUserId(userId){
+        return service.get(`/users/${userId}/user`);
+    },
 
     saveAdRenting(adrenting){
         return service.post('/adrenting', adrenting).catch(errHandler);
@@ -99,7 +102,6 @@ export default {
             }
         });
     },
-
     saveAdFinding(adfinding){
         return service.post('/adfinding', adfinding).catch(errHandler);
     },

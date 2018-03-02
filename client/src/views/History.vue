@@ -68,3 +68,9 @@
         }
     }
 </script>
+
+<style scoped>
+.container {
+  width: 900px;
+}
+</style>

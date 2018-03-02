@@ -1,6 +1,9 @@
 <template>
-    <section>
-        <form class="container" @submit.prevent="onSubmit">
+    <section class="container">
+        <b-notification type="is-success" @close="onCloseNotification" v-if="isSentSuccessfully">
+            Your review has been sent successfully
+        </b-notification>
+        <form  @submit.prevent="onSubmit">
             <SearchAutocomplete v-on:select="onSelectAddress" required/>
             <div class="columns">
                 <b-field class="column" label="N° Appartment">
@@ -14,7 +17,7 @@
                 </b-field>
             </div>
             <b-field label="Rent price" >
-                <b-input type="number" v-model="rentprice" required></b-input>
+                <b-input type="number" placeholder="€" v-model="rentprice" required></b-input>
             </b-field>
             <b-field label="Description">
                 <b-input  maxlength="200" type="textarea" v-model="description"></b-input>
@@ -40,12 +43,18 @@ export default {
       building: null,
       rentprice: null,
       description: null,
-      contact: null
+      contact: null,
+      isSentSuccessfully: false
     };
   },
   methods: {
     onSelectAddress(place) {
       this.address = place;
+    },
+     onCloseNotification(){
+        console.log('onCloseNotification');
+        this.isSentSuccessfully = false;
+        this.$router.go(0);
     },
     onSubmit() {
       var adRenting = {
@@ -64,3 +73,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  width: 550px;
+}
+</style>

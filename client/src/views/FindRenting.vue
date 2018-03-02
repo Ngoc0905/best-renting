@@ -1,15 +1,8 @@
 <template>
-  <div class="main">
-    <SearchAutocomplete v-on:select="updateParamsAndReload"/>
-    <div>
+  <div class="container">
+    <div id="left">
+    <SearchAutocomplete v-bind:lat="$route.params.lat" v-bind:lng="$route.params.lng" v-on:select="updateParamsAndReload"/>
       <div id="reviews">
-        <!-- <ul>
-          <li v-for="r in results" v-bind:key="r._id">
-            <span>District: {{ r.ratingDistrict }}</span>
-            <span>Building: {{ r.ratingBuilding }}</span>
-            <span>Landlord: {{ r.ratingLandlord }}</span>
-          </li>
-        </ul> -->
         <nav class="panel">
           <p class="panel-heading">
             Result
@@ -24,10 +17,9 @@
           </div>
         </nav>
       </div>
-      <div id="myMap"></div>
     </div>
+    <div id="myMap"></div>   
   </div>
-
 </template>
 
 <script>
@@ -68,6 +60,13 @@ export default {
       api.getReviews(place).then(responseFromServer => {
         console.log(responseFromServer);
         this.results = responseFromServer.data;
+      var map = new google.maps.Map(document.getElementById("myMap"), {
+        center: {
+          lat: place.lat,
+          lng: place.lng
+        },
+        scrollwheel: false,
+        zoom: 7
       });
       // this.$router.push({
       //   name: "findrenting",
@@ -76,23 +75,30 @@ export default {
       //     lng: place.geometry.location.lng()
       //   }
       // });
+
+      });
     }
   }
 };
 </script>
 
-<style>
-.main {
+<style scoped>
+
+.container {
   overflow: auto;
+  width: 900;
 }
-#reviews {
+#left {
   height: 300px;
   float: left;
   width: 49%;
 }
+#reviews{
+padding-top: 20px;
+}
 #myMap {
   height: 300px;
   float: right;
-  width: 49%;
+  width: 500px;
 }
 </style>

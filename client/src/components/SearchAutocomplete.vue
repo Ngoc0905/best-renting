@@ -10,7 +10,9 @@
 
 <script>
 export default {
+  props: [ "lat", "lng" ],
   mounted() {
+    console.log({ lat: this.lat, lng: this.lng });
     let input = document.getElementById("place-input");
     let autocomplete = new google.maps.places.Autocomplete(input);
 

@@ -10,7 +10,7 @@
     </div>
     
 </template>
-
+ n 
 <script>
 import api from "../api";
 import SearchAutocomplete from "../components/SearchAutocomplete";
@@ -31,12 +31,12 @@ export default {
 
   methods: {
       onSelect(place){
-          this.$router.push({name: 'findrenting',
-            params: {
-                lat: place.geometry.location.lat(),
-                lng: place.geometry.location.lng()
-            }});
-          
+        console.log('ON SELECT!!!!', place)
+        this.$router.push({name: 'findrenting',
+          params: {
+              lat: place.lat,
+              lng: place.lng
+          }});       
       }
   }
 };
