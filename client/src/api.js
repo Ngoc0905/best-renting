@@ -83,8 +83,22 @@ export default {
     getFindingPostsByUserId(userId){
         return service.get(`/users/${userId}/adfinding`);
     },
+
     getProfileByUserId(userId){
         return service.get(`/users/${userId}/profile`);
+    },
+
+    getUserAvatar(){
+        return service.get('/users/avatar');
+    },
+
+    updateUserProfile(userId, userForm) {
+        const config = {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        };
+        return service.post(`/users/${userId}/profile`, userForm, config);
     },
 
     saveAdRenting(adrenting){

@@ -8,7 +8,9 @@ const AdFindingSchema = new Schema ({
         city: String,
         region: String,
         country: String,
-        postal: String
+        postal: String,
+        lat: Number,
+        lng: Number
     },
     comments: String,
     contact: String,

@@ -1,7 +1,12 @@
 <template>
   <div id="app">
+<<<<<<< HEAD
      <NavBar />
      <section id="grad" class="section">
+=======
+     <NavBar v-bind:avatar="avatarUrl"/>
+     <section class="section">
+>>>>>>> 60a25f17beedc51aa80f2058d338e4d1ccb915f1
        <router-view />
        <h1>Test</h1>
        <h1>Test</h1>
@@ -61,17 +66,39 @@
 </template>
 
 <script>
-import NavBar  from './components/NavBar';
+import NavBar from "./components/NavBar";
 
-import api from './api';
+import api from "./api";
 
 export default {
-  components: { NavBar},
-
+  components: { NavBar },
+  data() {
+    return {
+      avatarUrl: null
+    };
+  },
   created() {
     const user = api.loadUser();
-    if (user) this.$root.user = user;
+    if (user) {
+      this.$root.user = user;
+      this.getUserImage();
+    }
+
+    this.$root.$on("avatarChanged", data => {
+      this.getUserImage(data);
+    });
   },
+  methods: {
+    getUserImage(url) {
+      if (url) {
+        this.avatarUrl = url;
+      } else {
+        api.getUserAvatar().then(responseFromServer => {
+          this.avatarUrl = responseFromServer.data;
+        });
+      }
+    }
+  }
 };
 </script>
 <style>

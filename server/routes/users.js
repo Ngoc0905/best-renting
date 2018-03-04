@@ -3,6 +3,8 @@ const router = express.Router();
 
 const passport = require('passport');
 const config = require('../config');
+const multer = require('multer');
+const upload = multer({dest: './public/uploads/'});
 
 const Review = require('../models/review');
 const AdFinding = require('../models/adfinding');
@@ -13,6 +15,30 @@ router.get('/users/:userId/profile', passport.authenticate('jwt', config.jwtSess
   User.findById(req.params.userId, (err, profile) => {
     if(err) return next(err);
     res.json(profile);
+  });
+});
+
+router.get('/users/avatar', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
+  User.findById(req.user._id, (err, user) => {
+    if(err) return next(err);
+    res.send(user.avatar);
+  });
+});
+
+router.post('/users/:userId/profile', passport.authenticate('jwt', config.jwtSession), upload.single('avatar'), (req, res, next) => {
+  User.findById(req.params.userId, (err, user) => {
+    if(err) return next(err);
+    if(!user) throw new Error(`User doesn't exist`);
+    console.log(req.file);
+    user.name = req.body.name;
+    user.email = req.body.email;
+    user.phone = req.body.phone || user.phone;
+    user.avatar = req.file ? `/uploads/${req.file.filename}` : user.avatar;
+
+    user.save((err) => {
+      if(err) return next(err);
+      res.json(user);
+    });
   });
 });
 
