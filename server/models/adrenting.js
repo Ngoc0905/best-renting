@@ -8,7 +8,9 @@ const AdRentingSchema = new Schema ({
         city: String,
         region: String,
         country: String,
-        postal: String
+        postal: String,
+        lat: Number,
+        lng: Number
     },
     number: Number,
     floor: Number,

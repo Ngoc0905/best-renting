@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar is-transparent">
+<nav class="navbar is-transparent is-fixed-top">
   <div class="navbar-brand">
      <router-link class="navbar-item" to="/" >Best Renting</router-link>
     <div class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive">
@@ -45,7 +45,9 @@
           <div class="dropdown is-right is-hoverable">
             <div class="dropdown-trigger">
               <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>Hi {{ $root.user.name}}</span>
+                <span>
+                  <img v-if="imageSrc" v-bind:src="imageSrc" alt="">
+                </span>
                 <span class="icon is-small">
                   <i class="fas fa-angle-down" aria-hidden="true"></i>
                 </span>
@@ -53,6 +55,9 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
               <div class="dropdown-content">
+                <div class="dropdown-item">
+                  Hi {{ $root.user.name }}
+                </div>
                 <router-link to="/profile" class="dropdown-item">Profile</router-link>
                 <router-link to="/history" class="dropdown-item">History</router-link>
                 <hr class="dropdown-divider">
@@ -72,12 +77,18 @@
 import api from "../api";
 
 export default {
+  props: ['avatar'],
   data() {
     return {
       isActive: false
     };
   },
-
+  computed: {
+    imageSrc() {
+      if (!this.avatar) return null;
+      return `http://localhost:3000${this.avatar}`;
+    }
+  },
   methods: {
     logout() {
       api.logout();
