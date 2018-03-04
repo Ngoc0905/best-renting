@@ -1,14 +1,20 @@
 <template>
-<<<<<<< HEAD
-<nav class="navbar is-transparent">
-  <div class="navbar-brand ">
-     <router-link class="navbar-item letter" to="/" >Best Renting</router-link>
-=======
 <nav class="navbar is-transparent is-fixed-top">
   <div class="navbar-brand">
-     <router-link class="navbar-item" to="/" >Best Renting</router-link>
->>>>>>> 60a25f17beedc51aa80f2058d338e4d1ccb915f1
-    <div class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive">
+     <router-link  class="navbar-item" to="/" >
+      <div class="logo">
+        <p id="letter-logo">Best Renting</p>
+        <div class="stars">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+      </div>
+      </div>
+    </router-link>
+     
+    <div class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive ">
       <span></span>
       <span></span>
       <span></span>
@@ -20,13 +26,13 @@
        <div class="navbar-item">
         <div class="field is-grouped">
           <p class="control ">
-            <router-link class="navbar-item letter" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
+            <router-link class="navbar-item letter menu" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
           </p>
           <p class="control"> 
-            <router-link class="navbar-item letter" to="/adrenting" @click.native="isActive=false">Ad Renting</router-link>
+            <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Ad Renting</router-link>
           </p>
           <p class="control"> 
-            <router-link class="navbar-item letter" to="/adfinding" @click.native="isActive=false">Ad Finding</router-link>
+            <router-link class="navbar-item letter menu" to="/adfinding" @click.native="isActive=false">Ad Finding</router-link>
           </p>
         </div>
     </div>
@@ -61,16 +67,11 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu">
               <div class="dropdown-content">
-<<<<<<< HEAD
-                <router-link to="/profile" class="dropdown-item letter">Profile</router-link>
-                <router-link to="/history" class="dropdown-item letter">History</router-link>
-=======
                 <div class="dropdown-item">
                   Hi {{ $root.user.name }}
                 </div>
                 <router-link to="/profile" class="dropdown-item">Profile</router-link>
                 <router-link to="/history" class="dropdown-item">History</router-link>
->>>>>>> 60a25f17beedc51aa80f2058d338e4d1ccb915f1
                 <hr class="dropdown-divider">
                 <a class="dropdown-item letter" @click="logout">Logout</a>
               </div>
@@ -109,16 +110,32 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .navbar {
-  background-color:rgb(192, 150, 34);
-  opacity: 0.9;
-  box-shadow: 0 4px 8px 0 rgba(6, 34, 2, 0.747), 0 6px 20px 0 rgba(140, 236, 30, 0.671);
+  background-color: transparent;
+ 
 }
-.letter {
-  color: beige;
-  font-family: 'Nunito', sans-serif;
+.logo{
+  text-align: center;
+  font-family:'Open Sans',Arial,sans-serif;
+  color: #fff 
 }
+#letter-logo{
+  font-weight: 700;
+  font-size: 32px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+  letter-spacing: 0.5px;
+  line-height: normal;
+  
+}
+.menu{
+  font-size: 16px;
+  text-transform: uppercase;
+  font-family:'Open Sans',Arial,sans-serif;
+  color: #fff; 
+  font-weight: 700;
+}
+
 </style>
 
 

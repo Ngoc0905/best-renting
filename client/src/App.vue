@@ -1,12 +1,9 @@
 <template>
   <div id="app">
-<<<<<<< HEAD
-     <NavBar />
-     <section id="grad" class="section">
-=======
+    <div id="background"></div>
+    <div id="overlay"></div>
      <NavBar v-bind:avatar="avatarUrl"/>
-     <section class="section">
->>>>>>> 60a25f17beedc51aa80f2058d338e4d1ccb915f1
+     <section id="grad" class="section">
        <router-view />
        <h1>Test</h1>
        <h1>Test</h1>
@@ -31,25 +28,7 @@
        <h1>Test</h1>
        <h1>Test</h1>
        <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1><h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1><h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1><h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
+       
        <h1>Test</h1>
      </section>
 
@@ -102,12 +81,32 @@ export default {
 };
 </script>
 <style>
-/* #grad {
-  background: linear-gradient(rgb(24, 114, 84), rgb(92, 212, 108), rgb(63, 180, 131));
-} */
-body {
-  background-image: url("https://cdn-cms.f-static.com/uploads/974296/2000_5a9b3049bc19d.jpg");
-  background-size: cover;
+
+#background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("./assets/background.jpg");
+  background-size:cover;
+  background-repeat: no-repeat;
+  height: 900px;
+  background-position: 0 -300px;
+}
+
+@media (max-width: 768px) {
+  #background{
+    background-position: 50% 0;
+  }
+}
+#overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 </style>
 

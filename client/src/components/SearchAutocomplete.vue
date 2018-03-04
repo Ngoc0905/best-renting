@@ -62,3 +62,8 @@ export default {
 };
 </script>
 
+<style scoped>
+.context{
+  padding-top: 300px;
+}
+</style>
