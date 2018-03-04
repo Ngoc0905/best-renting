@@ -42,48 +42,64 @@ export default {
   },
   methods: {
     initGoogleMap() {
-      var lat = !this.$route.params.lat
-        ? 48.85661400000001
-        : this.$route.params.lat;
-      var lng = this.$route.params.lng || 2.3522219000000177;
-
-      var map = new google.maps.Map(document.getElementById("myMap"), {
-        center: {
-          lat: lat,
-          lng: lng
-        },
-        scrollwheel: false,
-        zoom: 7
-      });
+      var place = getQueryStringInformations(this.$route.query);
+      if (place) {
+        this.updateParamsAndReload(place);
+      } else {
+        new google.maps.Map(document.getElementById("myMap"), {
+          center: {
+            lat: 48.85661400000001,
+            lng: 2.3522219000000177
+          },
+          scrollwheel: false,
+          zoom: 7
+        });
+      }
     },
     updateParamsAndReload(place) {
       api.getReviews(place).then(responseFromServer => {
         console.log(responseFromServer);
         this.results = responseFromServer.data;
-      var map = new google.maps.Map(document.getElementById("myMap"), {
-        center: {
-          lat: place.lat,
-          lng: place.lng
-        },
-        scrollwheel: false,
-        zoom: 7
-      });
-      // this.$router.push({
-      //   name: "findrenting",
-      //   params: {
-      //     lat: place.geometry.location.lat(),
-      //     lng: place.geometry.location.lng()
-      //   }
-      // });
+        let map = new google.maps.Map(document.getElementById("myMap"), {
+          center: {
+            lat: place.lat,
+            lng: place.lng
+          },
+          scrollwheel: false,
+          zoom: 11
+        });
 
+        this.results.forEach(r => {
+          console.log(r);
+          new google.maps.Marker({
+            position: {
+              lat: r.address.lat,
+              lng: r.address.lng
+            },
+            map: map,
+            title: `${r.address.street_number} ${r.address.route}, ${r.address.city}`
+          });
+        });
       });
     }
   }
 };
+
+function getQueryStringInformations(query) {
+  if (!query || !query.lat || !query.lng) return false;
+  return {
+    lat: parseFloat(query.lat),
+    lng: parseFloat(query.lng),
+    street_number: query.street_number,
+    route: query.route,
+    city: query.city,
+    region: query.region,
+    country: query.country
+  };
+}
 </script>
 
 <style scoped>
-
 .container {
   overflow: auto;
   width: 900;
@@ -93,8 +109,8 @@ export default {
   float: left;
   width: 49%;
 }
-#reviews{
-padding-top: 20px;
+#reviews {
+  padding-top: 20px;
 }
 #myMap {
   height: 300px;

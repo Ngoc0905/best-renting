@@ -8,12 +8,17 @@ const ReviewSchema = new Schema({
         city: String,
         region: String,
         country: String,
-        postal: String
+        postal: String,
+        lat: Number,
+        lng: Number
     },
     number: Number,
     floor: Number,
     building: String,
     comments: String,
+    ratingDistrict: Number,
+    ratingBuilding: Number,
+    ratingLandlord: Number,
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User'

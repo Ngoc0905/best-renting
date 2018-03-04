@@ -8,7 +8,7 @@
             <div class="panel-block">
                 <ul>
                     <li v-for="r in reviews" v-bind:key="r._id">
-                        {{r}}
+                        <Review v-bind:detail="r"/>
                     </li>
                 </ul>
             </div>
@@ -20,7 +20,7 @@
             <div class="panel-block">
                 <ul>
                     <li v-for="r in rentingPosts" v-bind:key="r._id">
-                        {{r}}
+                        <Review v-bind:detail="r"/>
                     </li>
                 </ul>
             </div>
@@ -32,17 +32,26 @@
             <div class="panel-block">
                 <ul>
                     <li v-for="r in findingPosts" v-bind:key="r._id">
-                        {{r}}
+                        <Review v-bind:detail="r"/>
                     </li>
                 </ul>
             </div>
         </nav>
     </section>
 </template>
+<style scoped>
+    .panel-block ul li {
+        margin: 10px 0;
+    }
+</style>
 
 <script>
     import api from "../api";
+    import Review from "../components/Review";
     export default {
+        components: {
+            Review
+        },
         data() {
             return {
                 reviews: null,
