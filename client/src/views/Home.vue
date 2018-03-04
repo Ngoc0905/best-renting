@@ -51,5 +51,6 @@ export default {
 .review{
   padding: 20px 300px;
 }
+
 </style>
 

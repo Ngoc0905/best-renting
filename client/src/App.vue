@@ -1,8 +1,51 @@
 <template>
   <div id="app">
      <NavBar />
-     <section class="section">
+     <section id="grad" class="section">
        <router-view />
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1><h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1><h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1><h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
+       <h1>Test</h1>
      </section>
 
     <footer class="footer">
@@ -31,6 +74,16 @@ export default {
   },
 };
 </script>
+<style>
+/* #grad {
+  background: linear-gradient(rgb(24, 114, 84), rgb(92, 212, 108), rgb(63, 180, 131));
+} */
+body {
+  background-image: url("https://cdn-cms.f-static.com/uploads/974296/2000_5a9b3049bc19d.jpg");
+  background-size: cover;
+}
+</style>
+
 
 
 
