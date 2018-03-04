@@ -84,7 +84,7 @@ export default {
         return service.get(`/users/${userId}/adfinding`);
     },
     getProfileByUserId(userId){
-        return service.get(`/users/${userId}/user`);
+        return service.get(`/users/${userId}/profile`);
     },
 
     saveAdRenting(adrenting){

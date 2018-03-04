@@ -30,7 +30,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/findrenting/:lat?/:lng?',
+      path: '/findrenting',
       name: 'findrenting',
       component: FindRenting
     },

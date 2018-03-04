@@ -9,8 +9,8 @@ const AdFinding = require('../models/adfinding');
 const AdRenting = require('../models/adrenting');
 const User = require('../models/user');
 
-router.get('/users/profile', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
-  User.find({profile: req.params.userId}, (err, profile) => {
+router.get('/users/:userId/profile', passport.authenticate('jwt', config.jwtSession), (req, res, next) => {
+  User.findById(req.params.userId, (err, profile) => {
     if(err) return next(err);
     res.json(profile);
   });

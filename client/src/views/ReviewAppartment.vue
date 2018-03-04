@@ -3,8 +3,15 @@
         <b-notification type="is-success" @close="onCloseNotification" v-if="isSentSuccessfully">
             Your review has been sent successfully
         </b-notification>
+        <b-notification type="is-danger" :active.sync="isOnError">
+            <ul>
+                <li v-for="err in errors" v-bind:key="err.id">{{ err }}</li>
+            </ul>
+        </b-notification>
         <form @submit.prevent="onSubmit">
-            <SearchAutocomplete v-on:select="onSelectAddress"/>
+            <b-field label="Address">
+                <SearchAutocomplete v-on:select="onSelectAddress"/>
+            </b-field>
             <div class="columns">
               <b-field class="column" label="N° Appartment">
                   <b-input type="number" v-model="number"></b-input>
@@ -40,30 +47,44 @@ import SearchAutocomplete from "../components/SearchAutocomplete";
 import StarRating from "vue-star-rating";
 
 export default {
-  components: { SearchAutocomplete, StarRating},
+  components: { SearchAutocomplete, StarRating },
   data() {
     return {
       address: null,
-      ratingDistrict: 1,
-      ratingBuilding: 1,
-      ratingLandlord: 1,
+      ratingDistrict: 3,
+      ratingBuilding: 3,
+      ratingLandlord: 3,
       number: null,
       floor: null,
       building: null,
-      comments:null,
-      isSentSuccessfully: false
+      comments: null,
+      isSentSuccessfully: false,
+      errors: [],
+      isOnError: false
     };
   },
   methods: {
     onSelectAddress(place) {
       this.address = place;
     },
-    onCloseNotification(){
-        console.log('onCloseNotification');
-        this.isSentSuccessfully = false;
-        this.$router.go(0);
+    onCloseNotification() {
+      this.isSentSuccessfully = false;
+      this.$router.go(0);
     },
     onSubmit() {
+      this.errors = [];
+      this.isOnError = false;
+      
+      if (!this.address) this.errors.push("Address is required.");
+
+      if (this.address && !this.address.street_number)
+        this.errors.push("Street number is required.");
+
+      if (this.errors.length) {
+        this.isOnError = true;
+        return false;
+      }
+
       var review = {
         address: this.address,
         number: this.number,
@@ -76,7 +97,7 @@ export default {
       };
 
       api.saveReview(review).then(responseFromServer => {
-          this.isSentSuccessfully = true;
+        this.isSentSuccessfully = true;
       });
     }
   }
