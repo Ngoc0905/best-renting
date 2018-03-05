@@ -132,5 +132,7 @@ export default {
         });
     },
 
-
+    removeReview(id) {
+        return service.delete('/reviews/' + id);
+    }
 };
