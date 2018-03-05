@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar is-transparent is-fixed-top">
+<nav class="navbar is-transparent" :class="{'is-fixed-top white-background': isOutOfScreen}">
   <div class="navbar-brand">
      <router-link  class="navbar-item" to="/" >
       <div class="logo">
@@ -23,60 +23,36 @@
 
    <div  class="navbar-menu" :class="{ 'is-active': isActive}">
     <div class="navbar-start">
-       <div class="navbar-item">
-        <div class="field is-grouped">
-          <p class="control ">
-            <router-link class="navbar-item letter menu" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
-          </p>
-          <p class="control"> 
-            <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Ad Renting</router-link>
-          </p>
-          <p class="control"> 
-            <router-link class="navbar-item letter menu" to="/adfinding" @click.native="isActive=false">Ad Finding</router-link>
-          </p>
-        </div>
-    </div>
+      <router-link class="navbar-item letter menu" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
+      <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Ad Renting</router-link>
+      <router-link class="navbar-item letter menu" to="/adfinding" @click.native="isActive=false">Ad Finding</router-link>
     </div>
 
-   <div class="navbar-end ">
-     <div class="navbar-item ">
-       <p class="control">
-         <router-link class="navbar-item letter menu" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
-       </p>
+   <div class="navbar-end">
+     <router-link class="navbar-item letter menu" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
+     <div v-if="!$root.user">
+        <router-link class="navbar-item letter" to="/login" @click.native="isActive =false">Login</router-link>
+        <router-link class="navbar-item letter" to="/signup" @click.native="isActive=false">Signup</router-link>
      </div>
-      <div class="navbar-item">
-        <div class="field is-grouped" v-if="!$root.user">
-          <p class="control">
-            <router-link class="navbar-item letter" to="/login" @click.native="isActive =false">Login</router-link>
-           </p>
-          <p class="control"> 
-            <router-link class="navbar-item letter" to="/signup" @click.native="isActive=false">Signup</router-link>
-          </p>
-        </div>
-        <div class="field is-grouped" v-else>
-          <div class="dropdown is-right is-hoverable">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>
-                  <img v-if="imageSrc" v-bind:src="imageSrc" alt="">
-                </span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
+     <div class="navbar-item has-dropdown is-right is-hoverable" id="dropdown-menu" v-else>
+       <a class="navbar-link" href="#">
+          <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>
+              <img v-if="imageSrc" v-bind:src="imageSrc" alt="">
+            </span>
+            <span class="icon is-small">
+              <i class="fas fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </a>
+        <div class="navbar-dropdown is-boxed">
+            <div class="navbar-item dropdown-item">
+              Hi {{ $root.user.name }}
             </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <div class="dropdown-item">
-                  Hi {{ $root.user.name }}
-                </div>
-                <router-link to="/profile" class="dropdown-item">Profile</router-link>
-                <router-link to="/history" class="dropdown-item">History</router-link>
-                <hr class="dropdown-divider">
-                <a class="dropdown-item letter" @click="logout">Logout</a>
-              </div>
-            </div>
-          </div>
+            <router-link to="/profile" class="navbar-item">Profile</router-link>
+            <router-link to="/history" class="navbar-item">History</router-link>
+            <hr class="navbar-divider">
+            <a class="navbar-item" @click="logout">Logout</a>
         </div>
       </div>
    </div>
@@ -89,10 +65,11 @@
 import api from "../api";
 
 export default {
-  props: ['avatar'],
+  props: ["avatar"],
   data() {
     return {
-      isActive: false
+      isActive: false,
+      isOutOfScreen: false
     };
   },
   computed: {
@@ -106,7 +83,17 @@ export default {
       api.logout();
       this.$root.user = null;
       this.$router.push("/login");
+    },
+    handleScroll() {
+      var scrollPos =
+        window.scrollY ||
+        window.scrollTop ||
+        document.getElementsByTagName("html")[0].scrollTop;
+      this.isOutOfScreen = scrollPos > 80; // height of navbar = 80
     }
+  },
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
   }
 };
 </script>
@@ -118,37 +105,60 @@ export default {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  overflow: hidden;
 }
 
-.logo{
-  text-align: center;
-  font-family:'Open Sans',Arial,sans-serif;
+.navbar-burger {
   color: #fff;
-
+  font-weight: 700;
 }
-#letter-logo{
+
+.navbar-menu.is-active a {
+  color: #4a4a4a;
+}
+
+.white-background {
+  background-color: #fff;
+  color: #4a4a4a;
+  border-bottom: 2px solid #4a4a4a;
+}
+
+.white-background a,
+.white-background p,
+.white-background .logo {
+  color: #4a4a4a !important;
+}
+
+.logo {
+  text-align: center;
+  font-family: "Open Sans", Arial, sans-serif;
+  color: #fff;
+}
+#letter-logo {
   font-weight: 700px;
   font-size: 28px;
-  text-shadow: 1px 1px 1px rgba(0,0,0,.1);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   letter-spacing: 0.5px;
   line-height: normal;
-  transform: scale(1, 1.0);
+  transform: scale(1, 1);
   font-weight: 800;
-  
 }
-.menu{
+.menu {
+  font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
   text-transform: uppercase;
-  font-family:'Open Sans',Arial,sans-serif;
-  color: #fff; 
-  font-weight: 200;
+  color: #fff;
   letter-spacing: 0.2px;
   transform: scale(1, 0.8);
   font-weight: 700;
 }
 
-
+.navbar-dropdown .navbar-item{
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transform: scale(1, 0.8);
+}
 </style>
 
 
