@@ -26,7 +26,7 @@ router.get('/reviews', (req, res, next) => {
         criteria['address.route'] = req.query.route;
     if (req.query.street_number)
         criteria['address.street_number'] = req.query.street_number;
-    Review.find(criteria, (err, reviews) => {
+    Review.find(criteria).populate("user").exec((err, reviews) => {
         if (err) return next(err);
         return res.json(reviews);
     });
