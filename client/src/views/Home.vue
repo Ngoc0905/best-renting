@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+      <h1>Good rental for all</h1>
+      <h2>Note a raiting for your rental, find a new rental</h2>
+      
         <div>
             <SearchAutocomplete v-on:select="onSelect"/>
         </div>
@@ -32,20 +35,15 @@ export default {
         lng: place.lng
       };
 
-      if(place.street_number)
-        query.street_number = place.street_number;
+      if (place.street_number) query.street_number = place.street_number;
 
-      if(place.route)
-        query.route = place.route;
+      if (place.route) query.route = place.route;
 
-      if(place.city)
-        query.city = place.city;
+      if (place.city) query.city = place.city;
 
-      if(place.region)
-        query.region = place.region;
+      if (place.region) query.region = place.region;
 
-      if(place.country)
-        query.country = place.country;
+      if (place.country) query.country = place.country;
 
       this.$router.push({
         name: "findrenting",
@@ -57,9 +55,46 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  padding-top: 100px;
+  padding-bottom: 70px;
+  max-width: 600px;
+  text-align: center;
+}
+h1 {
+  color: #fff;
+  text-align: center;
+  font-size: 48px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding: 10px;
+}
+h2 {
+  color: #fff;
+  text-align: center;
+  font-family: "Open Sans", Arial, sans-serif;
+  font-size: 22px;
+  padding: 30px;
+}
+@media (max-width: 768px) {
+  .container {
+    padding-top: 50px;
+    max-width: 400px;
+    text-align: center;
+    padding-bottom: 70px;
+  }
+  h1 {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 28px;
+    padding: 20px;
+  }
+  h2 {
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 13px;
+    padding: 20px;
+  }
+}
 .review {
   padding: 20px 30px;
 }
-
 </style>
 

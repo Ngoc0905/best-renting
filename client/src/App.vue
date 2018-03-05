@@ -5,31 +5,7 @@
      <NavBar v-bind:avatar="avatarUrl"/>
      <section id="grad" class="section">
        <router-view />
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       <h1>Test</h1>
-       
-       <h1>Test</h1>
+ 
      </section>
 
     <footer class="footer">

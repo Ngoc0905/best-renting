@@ -3,7 +3,7 @@
   <div class="navbar-brand">
      <router-link  class="navbar-item" to="/" >
       <div class="logo">
-        <p id="letter-logo">Best Renting</p>
+        <p id="letter-logo">Best renting</p>
         <div class="stars">
           <i class="far fa-star"></i>
           <i class="far fa-star"></i>
@@ -14,7 +14,7 @@
       </div>
     </router-link>
      
-    <div class="navbar-burger burger" :class="{ 'is-active': isActive }" @click="isActive = !isActive ">
+    <div class="navbar-burger burger change" :class="{ 'is-active': isActive }" @click="isActive = !isActive ">
       <span></span>
       <span></span>
       <span></span>
@@ -41,7 +41,7 @@
    <div class="navbar-end ">
      <div class="navbar-item ">
        <p class="control">
-         <router-link class="navbar-item letter" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
+         <router-link class="navbar-item letter menu" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
        </p>
      </div>
       <div class="navbar-item">
@@ -113,28 +113,41 @@ export default {
 <style scoped>
 .navbar {
   background-color: transparent;
- 
+  border-bottom: solid rgba(245, 243, 243, 0.13);
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  overflow: hidden;
 }
+
 .logo{
   text-align: center;
   font-family:'Open Sans',Arial,sans-serif;
-  color: #fff 
+  color: #fff;
+
 }
 #letter-logo{
-  font-weight: 700;
-  font-size: 32px;
+  font-weight: 700px;
+  font-size: 28px;
   text-shadow: 1px 1px 1px rgba(0,0,0,.1);
   letter-spacing: 0.5px;
   line-height: normal;
+  transform: scale(1, 1.0);
+  font-weight: 800;
   
 }
 .menu{
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   font-family:'Open Sans',Arial,sans-serif;
   color: #fff; 
+  font-weight: 200;
+  letter-spacing: 0.2px;
+  transform: scale(1, 0.8);
   font-weight: 700;
 }
+
 
 </style>
 
