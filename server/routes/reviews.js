@@ -32,4 +32,11 @@ router.get('/reviews', (req, res, next) => {
     });
 });
 
+router.delete('/reviews/:id', (req, res, next) => {
+    Review.findByIdAndRemove(req.params.id, (err) => {
+        if(err) return next(err);
+        res.json(true);
+    });
+});
+
 module.exports = router;
