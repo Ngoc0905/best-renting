@@ -10,6 +10,13 @@
         <div class="review">
             <router-link class="button" to="/review-appartment">Review your appartment!</router-link>
         </div>
+        <div id="btn_ccm">
+          <a href="#" v-scroll-to="{
+            el: '#bloc_contenant',
+            offset: -100
+          }" id="scroll-to-guide-btn" title="Comment fonctionne HappyRenting ?">Comment ça marche ?<br>
+          <span class="fa fa-chevron-down"></span></a>
+        </div>
     </div>
     <Guide/>
 </div>
@@ -28,6 +35,12 @@ export default {
     return {
       results: []
     };
+  },
+  mounted() {
+    document.getElementById('scroll-to-guide-btn').addEventListener('click', function(){
+      console.log('aaa');
+      document.getElementsByTagName('body')[0].scrollTo(0, 50);
+    });
   },
   methods: {
     onSelect(place) {

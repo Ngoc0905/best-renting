@@ -3,7 +3,7 @@
     <div id="background"></div>
     <div id="overlay"></div>
      <NavBar v-bind:avatar="avatarUrl"/>
-     <section id="grad" class="section">
+     <section id="grad">
        <router-view />
  
      </section>
@@ -68,12 +68,19 @@ export default {
   background-size:cover;
   background-repeat: no-repeat;
   height: 900px;
-  background-position: 0 -300px;
+  background-position: 0 -150px;
+  z-index: -2;
 }
 
 @media (max-width: 768px) {
   #background{
     background-position: 50% 0;
+  }
+}
+
+@media (max-width: 1366px) {
+  #background{
+  background-position: 0 -300px;
   }
 }
 #overlay{
@@ -83,6 +90,7 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
 }
 .label {
   color: #fff !important;

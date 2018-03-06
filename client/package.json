@@ -17,6 +17,7 @@
     "vue": "^2.5.13",
     "vue-router": "^3.0.1",
     "vue-scroll-to": "^2.2.0",
+    "vue-scrollto": "^2.10.0",
     "vue-star-rating": "^1.5.1"
   },
   "devDependencies": {

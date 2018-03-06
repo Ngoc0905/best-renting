@@ -1,5 +1,5 @@
 <template>
-<section>
+<section id="bloc_contenant">
   <div class="content columns">
     <div class="column">
         <h1>I'm tenant</h1>

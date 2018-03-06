@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="left">
-      <h2>Raiting places</h2>
+      <h2>Rating places</h2>
     <SearchAutocomplete v-bind:lat="$route.params.lat" v-bind:lng="$route.params.lng" v-on:select="updateParamsAndReload"/>
       <div id="reviews" v-if="results.length >0">
         <nav class="panel">
@@ -151,7 +151,7 @@ function getQueryStringInformations(query) {
 <style scoped>
 .container {
   overflow: auto;
-  width: 900;
+  padding: 50px;
   
 }
 h2{
