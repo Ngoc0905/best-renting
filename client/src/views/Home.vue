@@ -1,5 +1,6 @@
 <template>
-    <div class="container">
+<div>
+ <div class="container">
       <h1>Good rental for all</h1>
       <h2>Note a raiting for your rental, find a new rental</h2>
       
@@ -9,9 +10,10 @@
         <div class="review">
             <router-link class="button" to="/review-appartment">Review your appartment!</router-link>
         </div>
-        <Guide/>
     </div>
-    
+    <Guide/>
+</div>
+   
 </template>
 
 <script>
