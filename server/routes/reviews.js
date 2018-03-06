@@ -59,36 +59,4 @@ router.put('/reviews/:id', (req, res, next) => {
     });
 });
 
-router.put('/adfindings/:id', (req, res, next) => {
-    const adfinding = req.params.id;
-    const adfindingUpdate = {
-        address: req.body.address,
-        comments: req.body.comments,
-        contact: req.body.contact,
-        daterent: req.body.daterent,
-        rentprice: req.body.rentprice
-    };
-    AdFinding.findByIdAndUpdate(adfinding, adfindingUpdate, (err, updatedAdFinding) => {
-        if (err) return next(err);
-        res.json(updatedAdFinding);
-    });
-});
-
-router.put('/adrentings/:id', (req, res, next) => {
-    const adrenting = req.params.id;
-    const adrentingUpdate = {
-        address: req.body.address,
-        number: req.body.number,
-        floor: req.body.floor,
-        building: req.body.building,
-        price: req.body.price, 
-        description: req.body.description,
-        contact: req.body.contact,
-    };
-    AdRenting.findByIdAndUpdate(adrenting, adfindingUpdate, (err, updatedAdRenting) => {
-        if (err) return next(err);
-        res.json(updatedAdRenting);
-    });
-});
-
 module.exports = router;

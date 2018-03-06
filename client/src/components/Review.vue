@@ -110,7 +110,7 @@ export default {
   methods: {
     remove() {
         if(confirm("Do you want to delete this review?"))
-            this.$emit("remove", this.detail._id);
+            this.$emit("remove", this.detail._id, '/reviews/');
     },
     edit() {
       this.isOnEdit = true;

@@ -15,7 +15,7 @@ const ReviewSchema = new Schema({
     number: Number,
     floor: Number,
     building: String,
-    price: Number,
+    reviewprice: Number,
     comments: String,
     ratingDistrict: Number,
     ratingBuilding: Number,

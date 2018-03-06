@@ -16,38 +16,19 @@
             <div class="content">
                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <tr>
-                        <td class="first-column">Number of appartment</td>
-                        <td>
-                            <span v-if="!isOnEdit">{{ detail.number }}</span>
-                            <b-input type="text" v-if="isOnEdit" v-model="detail.number"></b-input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Floor</td>
-                        <td>
-                            <span v-if="!isOnEdit">{{ detail.floor }}</span>
-                            <b-input type="text" v-if="isOnEdit" v-model="detail.floor"></b-input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Building</td>
-                        <td>
-                            <span v-if="!isOnEdit">{{ detail.building }}</span>
-                            <b-input type="text" v-if="isOnEdit" v-model="detail.building"></b-input>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Rent Price</td>
+                        <td class="first-column">Rent Price</td>
                         <td>
                             <span v-if="!isOnEdit">{{ detail.rentprice }}</span>
                             <b-input type="text" v-if="isOnEdit" v-model="detail.rentprice"></b-input>
                         </td>
                     </tr>
                     <tr>
-                        <td>Description</td>
+                        <td>Select Date</td>
                         <td>
-                            <span v-if="!isOnEdit">{{ detail.description }}</span>
-                            <b-input type="textarea" v-if="isOnEdit" v-model="detail.description"></b-input>
+                            <span v-if="!isOnEdit">{{ formatedRentDate }}</span>
+                            <b-field v-else>
+                                <b-datepicker icon="calendar-today" v-model="detail.daterent"></b-datepicker>
+                            </b-field>
                         </td>
                     </tr>
                     <tr>
@@ -55,6 +36,13 @@
                         <td>
                             <span v-if="!isOnEdit">{{ detail.contact }}</span>
                             <b-input type="text" v-if="isOnEdit" v-model="detail.contact"></b-input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td>
+                            <span v-if="!isOnEdit">{{ detail.comments }}</span>
+                            <b-input type="textarea" v-if="isOnEdit" v-model="detail.comments"></b-input>
                         </td>
                     </tr>
                 </table>
@@ -94,21 +82,21 @@ export default {
       isOnEdit: false
     };
   },
-  mounted() {
-    console.log(this.detail);
-  },
+  mounted() {},
   methods: {
     remove() {
-        if(confirm("Do you want to delete this renting?"))
-            this.$emit("remove", this.detail._id, '/adrentings/');
+      if (confirm("Do you want to delete this finding?"))
+        this.$emit("remove", this.detail._id, "/adfindings/");
     },
     edit() {
       this.isOnEdit = true;
     },
     saveEdit() {
-      api.update(this.detail._id, this.detail, '/adrentings/').then(responseFromServer => {
-        this.isOnEdit = false;
-      });
+      api
+        .update(this.detail._id, this.detail, "/adfindings/")
+        .then(responseFromServer => {
+          this.isOnEdit = false;
+        });
     }
   },
   computed: {
@@ -116,8 +104,22 @@ export default {
       return `${this.detail.address.street_number} ${
         this.detail.address.route
       }, ${this.detail.address.city}, ${this.detail.address.country}`;
-    }           
+    },
+    formatedRentDate: function() {
+      return this.detail.daterent.ddmmyyyy();
+    }
   }
+};
+
+Date.prototype.ddmmyyyy = function() {
+  var mm = this.getMonth() + 1; // getMonth() is zero-based
+  var dd = this.getDate();
+
+  return [
+          (dd>9 ? '' : '0') + dd,
+          (mm>9 ? '' : '0') + mm,
+          this.getFullYear()
+         ].join('/');
 };
 </script>
 

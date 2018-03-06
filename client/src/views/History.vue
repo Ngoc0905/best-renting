@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <h1>History</h1>
+        <h1>Your history</h1>
         <nav class="panel">
             <p class="panel-heading">
                 Appartment reviewed by me
@@ -15,48 +15,41 @@
         </nav>
         <nav class="panel">
             <p class="panel-heading">
-                AdFinding
+                Your ad renting to find a new tenant
             </p>
             <div class="panel-block">
                 <ul>
                     <li v-for="r in findingPosts" v-bind:key="r._id">
-                        <Ad v-bind:detail="r"/>
+                        <Finding v-bind:detail="r"  v-on:remove="receiveRemoveId"/>
                     </li>
                 </ul>
             </div>
         </nav>
         <nav class="panel">
             <p class="panel-heading">
-                AdRenting
+                Your ad finding to find a new rental
             </p>
             <div class="panel-block">
                 <ul>
                     <li v-for="r in rentingPosts" v-bind:key="r._id">
-                        <Renting v-bind:detail="r"/>
+                        <Renting v-bind:detail="r"  v-on:remove="receiveRemoveId"/>
                     </li>
                 </ul>
             </div>
         </nav>
     </section>
 </template>
-<style scoped>
-.panel-block ul li {
-  margin: 10px 0;
-}
-ul {
-  width: 100%;
-}
-</style>
-</style>
 
 <script>
 import api from "../api";
 import Review from "../components/Review";
 import Renting from "../components/Renting";
+import Finding from "../components/Finding";
 export default {
   components: {
     Review,
-    Renting
+    Renting,
+    Finding
   },
   data() {
     return {
@@ -69,15 +62,28 @@ export default {
     this.getPosts();
   },
   methods: {
-    receiveRemoveId(id) {
-        api.removeReview(id).then(responseFromServer => {
-            for(let i = 0; i < this.reviews.length; i++){
-                if(this.reviews[i]._id === id){
-                    this.reviews.splice(i, 1);
-                    break;
-                }
-            }
-        });
+    receiveRemoveId(id, url) {
+        console.log(url);
+      api.remove(id, url).then(responseFromServer => {
+        let obj = [];
+        switch (url) {
+          case "/adrentings/":
+          obj = this.rentingPosts;
+            break;
+          case "/reviews/":
+          obj = this.reviews;
+            break;
+          default:
+          obj = this.findingPosts;
+            break;
+        }
+        for (let i = 0; i < obj.length; i++) {
+          if (obj[i]._id === id) {
+            obj.splice(i, 1);
+            break;
+          }
+        }
+      });
     },
     getPosts() {
       api.getReviewsByUserId(this.$root.user.id).then(responseFromServer => {
@@ -91,7 +97,10 @@ export default {
       api
         .getFindingPostsByUserId(this.$root.user.id)
         .then(responseFromServer => {
-          this.findingPosts = responseFromServer.data;
+          this.findingPosts = responseFromServer.data.map(d => {
+              d.daterent = new Date(d.daterent);
+              return d;
+          });
         });
     }
   }
@@ -101,5 +110,20 @@ export default {
 <style scoped>
 .container {
   width: 900px;
+}
+.panel-block ul li {
+  margin: 10px 0;
+}
+ul {
+  width: 100%;
+}
+h1 {
+  color: #fff;
+  font-size: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 10px;
+}
+p {
+  font-weight: bold;
 }
 </style>

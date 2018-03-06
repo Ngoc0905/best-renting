@@ -32,4 +32,26 @@ router.get('/adfinding', (req, res, next) => {
     });
 });
 
+router.delete('/adfindings/:id', (req, res, next) => {
+    AdFinding.findByIdAndRemove(req.params.id, (err) => {
+        if (err) return next(err);
+        res.json(true);
+    });
+});
+
+router.put('/adfindings/:id', (req, res, next) => {
+    const adfinding = req.params.id;
+    const adfindingUpdate = {
+        address: req.body.address,
+        comments: req.body.comments,
+        contact: req.body.contact,
+        daterent: req.body.daterent,
+        rentprice: req.body.rentprice
+    };
+    AdFinding.findByIdAndUpdate(adfinding, adfindingUpdate, (err, updatedAdFinding) => {
+        if (err) return next(err);
+        res.json(updatedAdFinding);
+    });
+});
+
 module.exports = router;

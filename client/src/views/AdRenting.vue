@@ -3,8 +3,11 @@
         <b-notification type="is-success" @close="onCloseNotification" v-if="isSentSuccessfully">
             Your review has been sent successfully
         </b-notification>
+        <h2>Post your ad renting</h2>
         <form  @submit.prevent="onSubmit">
-            <SearchAutocomplete v-on:select="onSelectAddress" required/>
+            <b-field  label="Address" >
+                <SearchAutocomplete v-on:select="onSelectAddress" required/>
+            </b-field>
             <div class="columns">
                 <b-field class="column" label="N° Appartment">
                     <b-input type="number" v-model="number"></b-input>
@@ -17,7 +20,7 @@
                 </b-field>
             </div>
             <b-field label="Rent price" >
-                <b-input type="number" placeholder="€" v-model="price" required></b-input>
+                <b-input type="number" placeholder="€" v-model="rentprice" required></b-input>
             </b-field>
             <b-field label="Description">
                 <b-input  maxlength="200" type="textarea" v-model="description"></b-input>
@@ -41,7 +44,7 @@ export default {
       number: null,
       floor: null,
       building: null,
-      price: null,
+      rentprice: null,
       description: null,
       contact: null,
       isSentSuccessfully: false
@@ -62,7 +65,7 @@ export default {
         number: this.number,
         floor: this.floor,
         building: this.building,
-        price: this.price,
+        rentprice: this.rentprice,
         description: this.description,
         contact: this.contact
       };
@@ -77,5 +80,11 @@ export default {
 <style scoped>
 .container {
   width: 550px;
+}
+h2{
+  color: #fff;
+  font-size: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 10px;
 }
 </style>

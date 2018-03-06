@@ -5,7 +5,7 @@
       </b-notification>
         <nav class="panel">
             <p class="panel-heading">
-                Profile
+                Your Profile
             </p>
             <div class="panel-block">
                 <form v-if="profile" @submit.prevent="onSubmit">
@@ -38,19 +38,6 @@
         </nav>
     </section>
 </template>
-<style scoped>
-.container {
-  width: 900px;
-}
-form {
-  width: 100%;
-}
-
-img.avatar {
-  width: 160px;
-  height: 160px;
-}
-</style>
 
 <script>
 import api from "../api";
@@ -111,3 +98,21 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  width: 900px;
+}
+form {
+  width: 100%;
+}
+
+img.avatar {
+  width: 160px;
+  height: 160px;
+}
+p{
+  font-weight: bold;
+  
+}
+</style>

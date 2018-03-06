@@ -32,4 +32,28 @@ router.get('/adrenting', (req, res, next) => {
     });
 });
 
+router.delete('/adrentings/:id', (req, res, next) => {
+    AdRenting.findByIdAndRemove(req.params.id, (err) => {
+        if (err) return next(err);
+        res.json(true);
+    });
+});
+
+router.put('/adrentings/:id', (req, res, next) => {
+    const adrenting = req.params.id;
+    const adrentingUpdate = {
+        address: req.body.address,
+        number: req.body.number,
+        floor: req.body.floor,
+        building: req.body.building,
+        rentprice: req.body.rentprice, 
+        description: req.body.description,
+        contact: req.body.contact
+    };
+    AdRenting.findByIdAndUpdate(adrenting, adrentingUpdate, (err, updatedAdRenting) => {
+        if (err) return next(err);
+        res.json(updatedAdRenting);
+    });
+});
+
 module.exports = router;
