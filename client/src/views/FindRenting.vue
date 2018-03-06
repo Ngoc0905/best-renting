@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div id="left">
+      <h2>Raiting places</h2>
     <SearchAutocomplete v-bind:lat="$route.params.lat" v-bind:lng="$route.params.lng" v-on:select="updateParamsAndReload"/>
       <div id="reviews" v-if="results.length >0">
         <nav class="panel">
@@ -25,7 +26,7 @@
           </div>
           <div class="panel-block">
             <div v-for="r in results" v-bind:key="r.id">
-             <img :src="'http://localhost:3000'+ r.user.avatar" alt=""> 
+             <img :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
              {{ r.user.email}}{{ r.comments }}
             </div>
           </div>
@@ -151,12 +152,19 @@ function getQueryStringInformations(query) {
 .container {
   overflow: auto;
   width: 900;
-  padding-top: 100px;
+  
+}
+h2{
+  color: #fff;
+  font-size: 26px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 20px;
 }
 #left {
-  height: 300px;
+  height: 500px;
   float: left;
   width: 49%;
+  padding-left: 50px;
 }
 #reviews {
   padding-top: 20px;
@@ -165,6 +173,8 @@ function getQueryStringInformations(query) {
   height: 300px;
   float: right;
   width: 500px;
+  margin-top: 50px;
+  margin-right: 50px;
 }
 .bloc_moyenne {
   border: 1px solid #f7b000;
@@ -202,5 +212,9 @@ function getQueryStringInformations(query) {
 
 .bloc_moyenne_details ul li {
   float: left;
+}
+.panel-heading{
+  font-size: 20px;
+  font-family: "Open Sans", Arial, sans-serif;
 }
 </style>

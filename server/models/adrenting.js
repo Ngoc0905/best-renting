@@ -15,6 +15,7 @@ const AdRentingSchema = new Schema ({
     number: Number,
     floor: Number,
     building: String,
+    price: Number,
     description: String,
     contact: String,
     user: {

@@ -8,8 +8,9 @@
                 <li v-for="err in errors" v-bind:key="err.id">{{ err }}</li>
             </ul>
         </b-notification>
+        <h2>Your review</h2>
         <form @submit.prevent="onSubmit">
-            <b-field label="Address">
+            <b-field  label="Address">
                 <SearchAutocomplete v-on:select="onSelectAddress"/>
             </b-field>
             <div class="columns">
@@ -23,17 +24,17 @@
                   <b-input type="text" v-model="building"></b-input>
               </b-field>
             </div>
-            <b-field label="Comments">
+            <b-field  label="Comments">
                 <b-input maxlength="100" type="textarea" v-model="comments">
                 </b-input>
             </b-field>
-            <b-field label="Rating District">
+            <b-field  label="Rating District">
                 <star-rating v-model="ratingDistrict"></star-rating>
             </b-field>
-            <b-field label="Rating Building">
+            <b-field  label="Rating Building">
                 <star-rating v-model="ratingBuilding"></star-rating>
             </b-field>
-            <b-field label="Rating Landlord">
+            <b-field  label="Rating Landlord">
                 <star-rating v-model="ratingLandlord"></star-rating>
             </b-field>
             <button type="submit" class="button is-primary">Submit</button>
@@ -74,7 +75,7 @@ export default {
     onSubmit() {
       this.errors = [];
       this.isOnError = false;
-      
+
       if (!this.address) this.errors.push("Address is required.");
 
       if (this.address && !this.address.street_number)
@@ -106,6 +107,14 @@ export default {
 <style scoped>
 .container {
   width: 500px;
+}
+h2 {
+  color: #fff;
+  font-size: 30px;
+  font-family: "Open Sans", Arial, sans-serif;
+}
+.label {
+  color: #fff;
 }
 </style>
 
