@@ -4,31 +4,120 @@
             <p class="card-header-title">
                 {{ address_detail }}
             </p>
-            <a class="button" @click="remove"><i class="fas fa-trash-alt"></i></a>
-            <a class="button" @click="edit"><i class="fas fa-edit"></i></a>
+            <div class="actions-container">
+                <a class="button" @click="remove">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a :class="['button', {'hide':  isOnEdit}]" @click="edit"><i class="fas fa-edit"></i></a>
+                <a :class="['button', {'hide':  !isOnEdit}]" id="save" @click="saveEdit"><i class="far fa-save"></i></a>
+            </div>
         </header>
         <div class="card-content">
             <div class="content">
-                <div class=" is-three-quarters">{{ review_detail }}</div>
+                <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+                    <tr>
+                        <td class="first-column">Number of appartment</td>
+                        <td>
+                            <span v-if="!isOnEdit">{{ detail.number }}</span>
+                            <input v-if="isOnEdit" type="text" v-model="detail.number">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Floor</td>
+                        <td>
+                            <span v-if="!isOnEdit">{{ detail.floor }}</span>
+                            <input v-if="isOnEdit" type="text" v-model="detail.floor">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Building</td>
+                        <td>
+                            <span v-if="!isOnEdit">{{ detail.building }}</span>
+                            <input v-if="isOnEdit" type="text" v-model="detail.building">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rating District</td>
+                        <td>
+                            <span>
+                                <star-rating v-model="detail.ratingDistrict" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rating Building</td>
+                        <td>
+                            <span>
+                                <star-rating v-model="detail.ratingBuilding" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rating Landlord</td>
+                        <td>
+                            <span>
+                                <star-rating v-model="detail.ratingLandlord" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Comments</td>
+                        <td>
+                            <span v-if="!isOnEdit">{{ detail.comments }}</span>
+                            <textarea v-if="isOnEdit" rows="5" v-model="detail.comments"></textarea>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 </template>
+<style scoped>
+    .actions-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .actions-container a {
+        margin-right: 10px;
+    }
+
+    .hide{
+        display: none;
+    }
+
+    .first-column{
+        width: 50%;
+    }
+</style>
 
 <script>
 import api from "../api";
+import StarRating from "vue-star-rating";
 export default {
+  components: {
+    StarRating
+  },
   props: ["detail"],
+  data() {
+    return {
+      isOnEdit: false
+    };
+  },
   mounted() {
     console.log(this.detail.address.lat, this.detail.address.lng);
   },
-  methods:{
-      remove(){
-        this.$emit('remove', this.detail._id);
-      },
-      edit(){
-        this.$emit('edit', this.detail._id);  
-      }
+  methods: {
+    remove() {
+      this.$emit("remove", this.detail._id);
+    },
+    edit() {
+      this.isOnEdit = true;
+    },
+    saveEdit() {
+      this.$emit("edit", this.detail._id);
+      this.isOnEdit = false;
+    }
   },
   computed: {
     address_detail() {
@@ -36,9 +125,10 @@ export default {
         this.detail.address.route
       }, ${this.detail.address.city}, ${this.detail.address.country}`;
     },
-    review_detail(){
-    return `${this.detail.number} ${
-        this.detail.floor} ${this.detail.building} ${this.detail.comments} ${this.detail.ratingDistrict}
+    review_detail() {
+      return `${this.detail.number} ${this.detail.floor} ${
+        this.detail.building
+      } ${this.detail.comments} ${this.detail.ratingDistrict}
         ${this.detail.ratingBuilding} ${this.detail.ratingLandlord}`;
     }
   }

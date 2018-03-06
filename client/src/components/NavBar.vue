@@ -30,11 +30,9 @@
 
    <div class="navbar-end">
      <router-link class="navbar-item letter menu" to="/review-appartment" @click.native="isActive =false">Review your appartment</router-link>
-     <div v-if="!$root.user">
-        <router-link class="navbar-item letter" to="/login" @click.native="isActive =false">Login</router-link>
-        <router-link class="navbar-item letter" to="/signup" @click.native="isActive=false">Signup</router-link>
-     </div>
-     <div class="navbar-item has-dropdown is-right is-hoverable" id="dropdown-menu" v-else>
+      <router-link v-if="!$root.user" class="navbar-item letter menu" to="/login" @click.native="isActive =false">Login</router-link>
+      <router-link v-if="!$root.user" class="navbar-item letter menu" to="/signup" @click.native="isActive=false">Signup</router-link>
+     <div class="navbar-item has-dropdown is-right is-hoverable" id="dropdown-menu" v-if="$root.user">
        <a class="navbar-link" href="#">
           <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
             <span>
@@ -152,7 +150,7 @@ export default {
   font-weight: 700;
 }
 
-.navbar-dropdown .navbar-item{
+.navbar-dropdown .navbar-item {
   font-family: "Open Sans", Arial, sans-serif;
   font-size: 14px;
   font-weight: 700;
