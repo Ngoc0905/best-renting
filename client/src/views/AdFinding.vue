@@ -1,18 +1,21 @@
 <template>
   <section class="container">
     <b-notification type="is-success" @close="onCloseNotification" v-if="isSentSuccessfully">
-        Your review has been sent successfully
+        Your post has been sent successfully
     </b-notification>
+    <h2>Post your ad finding</h2>
     <form  @submit.prevent="onSubmit">
-        <SearchAutocomplete v-on:select="onSelectAddress" required/>
-        <b-field label="Rent price">
-            <b-input type="text" placeholder="€" v-model="rentprice" ></b-input>
+        <b-field  label="Address" >
+          <SearchAutocomplete v-on:select="onSelectAddress" />
         </b-field>
-        <b-field label="Select a date">
+        <b-field label="Rent price">
+            <b-input type="text" placeholder="€" v-model="rentprice" required></b-input>
+        </b-field>
+        <b-field label="Select a date" >
         <b-datepicker
             placeholder="Type or select a date..."
             icon="calendar-today"
-            :readonly="false" v-model="daterent">
+            :readonly="false" v-model="daterent" required>
         </b-datepicker>
         </b-field>
         <b-field label="Comments">
@@ -68,5 +71,11 @@ export default {
 <style scoped>
 .container {
   width: 550px;
+}
+h2{
+  color: #fff;
+  font-size: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 10px;
 }
 </style>

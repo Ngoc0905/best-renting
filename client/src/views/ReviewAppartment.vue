@@ -10,7 +10,7 @@
         </b-notification>
         <h2>Your review</h2>
         <form @submit.prevent="onSubmit">
-            <b-field  label="Address">
+            <b-field  label="Address" >
                 <SearchAutocomplete v-on:select="onSelectAddress"/>
             </b-field>
             <div class="columns">
@@ -24,6 +24,10 @@
                   <b-input type="text" v-model="building"></b-input>
               </b-field>
             </div>
+            <b-field  label="Price">
+                <b-input maxlength="100" type="number"  placeholder="€" v-model="reviewprice">
+                </b-input>
+            </b-field>
             <b-field  label="Comments">
                 <b-input maxlength="100" type="textarea" v-model="comments">
                 </b-input>
@@ -58,6 +62,7 @@ export default {
       number: null,
       floor: null,
       building: null,
+      reviewprice: null,
       comments: null,
       isSentSuccessfully: false,
       errors: [],
@@ -91,6 +96,7 @@ export default {
         number: this.number,
         floor: this.floor,
         building: this.building,
+        reviewprice: this.reviewprice,
         comments: this.comments,
         ratingDistrict: this.ratingDistrict,
         ratingBuilding: this.ratingBuilding,
@@ -110,10 +116,9 @@ export default {
 }
 h2 {
   color: #fff;
-  font-size: 30px;
+  font-size: 28px;
   font-family: "Open Sans", Arial, sans-serif;
 }
-.label {
-  color: #fff;
-}
 </style>
+
+

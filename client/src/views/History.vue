@@ -1,6 +1,6 @@
 <template>
     <section class="container">
-        <h1>History</h1>
+        <h1>Your history</h1>
         <nav class="panel">
             <p class="panel-heading">
                 Appartment reviewed by me
@@ -15,7 +15,7 @@
         </nav>
         <nav class="panel">
             <p class="panel-heading">
-                AdFinding
+                Your ad renting to find a new tenant
             </p>
             <div class="panel-block">
                 <ul>
@@ -27,7 +27,7 @@
         </nav>
         <nav class="panel">
             <p class="panel-heading">
-                AdRenting
+                Your ad finding to find a new rental
             </p>
             <div class="panel-block">
                 <ul>
@@ -39,15 +39,6 @@
         </nav>
     </section>
 </template>
-<style scoped>
-.panel-block ul li {
-  margin: 10px 0;
-}
-ul {
-  width: 100%;
-}
-</style>
-</style>
 
 <script>
 import api from "../api";
@@ -68,17 +59,17 @@ export default {
   },
   methods: {
     receiveRemoveId(id) {
-        api.removeReview(id).then(responseFromServer => {
-            for(let i = 0; i < this.reviews.length; i++){
-                if(this.reviews[i]._id === id){
-                    this.reviews.splice(i, 1);
-                    break;
-                }
-            }
-        });
+      api.removeReview(id).then(responseFromServer => {
+        for (let i = 0; i < this.reviews.length; i++) {
+          if (this.reviews[i]._id === id) {
+            this.reviews.splice(i, 1);
+            break;
+          }
+        }
+      });
     },
     receiveEditId(id) {
-        console.log('edit', id);
+      console.log("edit", id);
     },
     getPosts() {
       api.getReviewsByUserId(this.$root.user.id).then(responseFromServer => {
@@ -102,5 +93,20 @@ export default {
 <style scoped>
 .container {
   width: 900px;
+}
+.panel-block ul li {
+  margin: 10px 0;
+}
+ul {
+  width: 100%;
+}
+h1 {
+  color: #fff;
+  font-size: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 10px;
+}
+p{
+    font-weight: bold;
 }
 </style>

@@ -84,7 +84,16 @@ export default {
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.4);
 }
+.label {
+  color: #fff !important;
+}
 </style>
+<style lang="scss">
+@import "~bulma/sass/utilities/_all";
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+</style>
+
 
 
 

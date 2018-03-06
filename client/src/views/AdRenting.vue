@@ -3,8 +3,11 @@
         <b-notification type="is-success" @close="onCloseNotification" v-if="isSentSuccessfully">
             Your review has been sent successfully
         </b-notification>
+        <h2>Post your ad renting</h2>
         <form  @submit.prevent="onSubmit">
-            <SearchAutocomplete v-on:select="onSelectAddress" required/>
+            <b-field  label="Address" >
+                <SearchAutocomplete v-on:select="onSelectAddress" required/>
+            </b-field>
             <div class="columns">
                 <b-field class="column" label="N° Appartment">
                     <b-input type="number" v-model="number"></b-input>
@@ -77,5 +80,11 @@ export default {
 <style scoped>
 .container {
   width: 550px;
+}
+h2{
+  color: #fff;
+  font-size: 28px;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 10px;
 }
 </style>

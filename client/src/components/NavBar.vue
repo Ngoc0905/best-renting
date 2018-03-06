@@ -24,8 +24,8 @@
    <div  class="navbar-menu" :class="{ 'is-active': isActive}">
     <div class="navbar-start">
       <router-link class="navbar-item letter menu" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
-      <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Ad Renting</router-link>
-      <router-link class="navbar-item letter menu" to="/adfinding" @click.native="isActive=false">Ad Finding</router-link>
+      <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Renting</router-link>
+      <router-link class="navbar-item letter menu" to="/adfinding" @click.native="isActive=false">Finding</router-link>
     </div>
 
    <div class="navbar-end">
