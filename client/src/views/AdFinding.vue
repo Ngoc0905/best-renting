@@ -19,7 +19,7 @@
             <b-input  maxlength="100" type="textarea" v-model="comments"></b-input>
         </b-field>
         <b-field label="Contact">
-            <b-input  maxlength="100" type="textarea" v-model="contact"></b-input>
+            <b-input  maxlength="100" type="text" v-model="contact"></b-input>
         </b-field>
         <button type="submit" class="button is-primary">Submit</button>
     </form>

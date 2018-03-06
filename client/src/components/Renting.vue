@@ -19,52 +19,42 @@
                         <td class="first-column">Number of appartment</td>
                         <td>
                             <span v-if="!isOnEdit">{{ detail.number }}</span>
-                            <input v-if="isOnEdit" type="text" v-model="detail.number">
+                            <b-input type="text" v-if="isOnEdit" v-model="detail.number"></b-input>
                         </td>
                     </tr>
                     <tr>
                         <td>Floor</td>
                         <td>
                             <span v-if="!isOnEdit">{{ detail.floor }}</span>
-                            <input v-if="isOnEdit" type="text" v-model="detail.floor">
+                            <b-input type="text" v-if="isOnEdit" v-model="detail.floor"></b-input>
                         </td>
                     </tr>
                     <tr>
                         <td>Building</td>
                         <td>
                             <span v-if="!isOnEdit">{{ detail.building }}</span>
-                            <input v-if="isOnEdit" type="text" v-model="detail.building">
+                            <b-input type="text" v-if="isOnEdit" v-model="detail.building"></b-input>
                         </td>
                     </tr>
                     <tr>
-                        <td>Rating District</td>
+                        <td>Rent Price</td>
                         <td>
-                            <span>
-                                <star-rating v-model="detail.ratingDistrict" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
-                            </span>
+                            <span v-if="!isOnEdit">{{ detail.price }}</span>
+                            <b-input type="text" v-if="isOnEdit" v-model="detail.price"></b-input>
                         </td>
                     </tr>
                     <tr>
-                        <td>Rating Building</td>
+                        <td>Description</td>
                         <td>
-                            <span>
-                                <star-rating v-model="detail.ratingBuilding" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
-                            </span>
+                            <span v-if="!isOnEdit">{{ detail.description }}</span>
+                            <b-input type="textarea" v-if="isOnEdit" v-model="detail.description"></b-input>
                         </td>
                     </tr>
                     <tr>
-                        <td>Rating Landlord</td>
+                        <td>Contact</td>
                         <td>
-                            <span>
-                                <star-rating v-model="detail.ratingLandlord" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="!isOnEdit"></star-rating>
-                            </span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Comments</td>
-                        <td>
-                            <span v-if="!isOnEdit">{{ detail.comments }}</span>
-                            <textarea v-if="isOnEdit" rows="5" v-model="detail.comments"></textarea>
+                            <span v-if="!isOnEdit">{{ detail.contact }}</span>
+                            <b-input type="text" v-if="isOnEdit" v-model="detail.contact"></b-input>
                         </td>
                     </tr>
                 </table>
@@ -109,14 +99,14 @@ export default {
   },
   methods: {
     remove() {
-        if(confirm("Do you want to delete this review?"))
-            this.$emit("remove", this.detail._id);
+        if(confirm("Do you want to delete this renting?"))
+            this.$emit("remove", this.detail._id, 'renting');
     },
     edit() {
       this.isOnEdit = true;
     },
     saveEdit() {
-      api.update(this.detail._id, this.detail, '/reviews/').then(responseFromServer => {
+      api.update(this.detail._id, this.detail, '/adrenting/').then(responseFromServer => {
         this.isOnEdit = false;
       });
     }
@@ -126,7 +116,9 @@ export default {
       return `${this.detail.address.street_number} ${
         this.detail.address.route
       }, ${this.detail.address.city}, ${this.detail.address.country}`;
-    }
+    }           
   }
 };
 </script>
+
+

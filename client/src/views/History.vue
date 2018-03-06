@@ -8,7 +8,7 @@
             <div class="panel-block">
                 <ul>
                     <li v-for="r in reviews" v-bind:key="r._id">
-                        <Review v-bind:detail="r" v-on:remove="receiveRemoveId" v-on:edit="receiveEditId" />
+                        <Review v-bind:detail="r" v-on:remove="receiveRemoveId" />
                     </li>
                 </ul>
             </div>
@@ -19,8 +19,8 @@
             </p>
             <div class="panel-block">
                 <ul>
-                    <li v-for="r in rentingPosts" v-bind:key="r._id">
-                        <Review v-bind:detail="r"/>
+                    <li v-for="r in findingPosts" v-bind:key="r._id">
+                        <Ad v-bind:detail="r"/>
                     </li>
                 </ul>
             </div>
@@ -31,8 +31,8 @@
             </p>
             <div class="panel-block">
                 <ul>
-                    <li v-for="r in findingPosts" v-bind:key="r._id">
-                        <Review v-bind:detail="r"/>
+                    <li v-for="r in rentingPosts" v-bind:key="r._id">
+                        <Renting v-bind:detail="r"/>
                     </li>
                 </ul>
             </div>
@@ -52,9 +52,11 @@ ul {
 <script>
 import api from "../api";
 import Review from "../components/Review";
+import Renting from "../components/Renting";
 export default {
   components: {
-    Review
+    Review,
+    Renting
   },
   data() {
     return {
@@ -76,9 +78,6 @@ export default {
                 }
             }
         });
-    },
-    receiveEditId(id) {
-        console.log('edit', id);
     },
     getPosts() {
       api.getReviewsByUserId(this.$root.user.id).then(responseFromServer => {

@@ -132,7 +132,11 @@ export default {
         });
     },
 
-    removeReview(id) {
-        return service.delete('/reviews/' + id);
+    remove(id, url) {
+        return service.delete(url + id);
+    },
+    
+    update(id, obj, url){
+        return service.put(url + id, obj);
     }
 };

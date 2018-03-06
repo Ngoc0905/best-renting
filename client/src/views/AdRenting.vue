@@ -17,13 +17,13 @@
                 </b-field>
             </div>
             <b-field label="Rent price" >
-                <b-input type="number" placeholder="€" v-model="rentprice" required></b-input>
+                <b-input type="number" placeholder="€" v-model="price" required></b-input>
             </b-field>
             <b-field label="Description">
                 <b-input  maxlength="200" type="textarea" v-model="description"></b-input>
             </b-field>
             <b-field label="Contact">
-                <b-input  maxlength="100" type="textarea" v-model="contact"></b-input>
+                <b-input  maxlength="100" type="text" v-model="contact"></b-input>
             </b-field>
             <button type="submit" class="button is-primary">Submit</button>
         </form>
@@ -41,7 +41,7 @@ export default {
       number: null,
       floor: null,
       building: null,
-      rentprice: null,
+      price: null,
       description: null,
       contact: null,
       isSentSuccessfully: false
@@ -62,7 +62,7 @@ export default {
         number: this.number,
         floor: this.floor,
         building: this.building,
-        rentprice: this.rentprice,
+        price: this.price,
         description: this.description,
         contact: this.contact
       };

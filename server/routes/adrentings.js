@@ -26,7 +26,7 @@ router.get('/adrenting', (req, res, next) => {
         criteria['address.route'] = req.query.route;
     if (req.query.street_number)
         criteria['address.street_number'] = req.query.street_number;
-        AdRenting.find(criteria, (err, adrentings) => {
+    AdRenting.find(criteria, (err, adrentings) => {
         if (err) return next(err);
         return res.json(adrentings);
     });
