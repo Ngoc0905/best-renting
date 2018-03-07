@@ -9,7 +9,6 @@
      </section>
 
     <footer class="footer">
-      <div class="container">
         <div class="content has-text-centered">
           <div class="columns" id="letter">
             <div class="column" >
@@ -41,7 +40,6 @@
             <strong>@2018 Website "Best- Renting"</strong> created by BICH Ngoc LE
           </p>
         </div>
-      </div>
     </footer>
   </div>
 </template>
