@@ -112,7 +112,8 @@ h2 {
   padding: 20px 30px;
 }
 #btn_ccm{
-  padding-top: 20px;
+  padding-top: 70px;
+  font-size: 20px;
 }
 #scroll-to-guide-btn, .fa-chevron-down {
   color: #fff;
