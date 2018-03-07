@@ -102,7 +102,7 @@ export default {
 
 @media (max-width: 1366px) {
   #background {
-    background-position: 0 -200px;
+    background-position: 0 -250px;
   }
 }
 #overlay {
