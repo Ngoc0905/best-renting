@@ -8,7 +8,7 @@
           <p class="panel-heading">
             Result
           </p>
-          <div class="panel-block">
+          <div class="panel-block total">
             <div class="columns">
               <div class="column">
                 <div class="bloc_moyenne">
@@ -26,28 +26,29 @@
                   <div class="sr">
                      <li>Landlord: </li><star-rating  v-model="totalRatingLandlord" increment="0.01" read-only="true"></star-rating>
                   </div>
-                  
-                 
                 </ul>
               </div>
             </div>
           </div>
-          <div class="panel-block">
+          <div class="panel-block detail">
             <div class="columns" v-for="r in results" v-bind:key="r.id">
               <div class="column is-one-quarter">
                 <img class="img_avatar" :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
               </div>
-              <div class="column is-one-quarter">
-                <ul>
-                  <li>District: </li>{{r.ratingDistrict}}
-                  <li>Building: </li>{{r.ratingBuilding}}
-                  <li>Landlord: </li>{{r.ratingLandlord}}
-                </ul>
+              <div class="cr columns">
+                <div class="column ">
+                  <ul class="dl">
+                    <li>District: </li><star-rating  v-model="r.ratingDistrict" increment="0.01" read-only="true"></star-rating>
+                    <li>Building: </li><star-rating  v-model="r.ratingBuilding" increment="0.01" read-only="true"></star-rating>
+                    <li>Landlord: </li><star-rating  v-model="r.ratingLandlord" increment="0.01" read-only="true"></star-rating>
+                  </ul>
+                </div>
+                <div class="column is-haft">
+                  <p>Name: {{ r.user.name}}</p>
+                  <p>Comments: {{ r.comments }}</p>
+                </div>
               </div>
-              <div class="column">
-                <p>{{ r.user.name}}</p>
-                <p>{{ r.comments }}</p>
-              </div>
+              
             </div>
           </div>
         </nav>
@@ -197,6 +198,9 @@ h2 {
   float: left;
   width: 60%;
 }
+#left .total {
+  background-color: rgba(194, 180, 180, 0.623);
+}
 #reviews {
   padding-top: 20px;
 }
@@ -255,7 +259,15 @@ h2 {
   font-size: 20px;
   font-family: "Open Sans", Arial, sans-serif;
 }
-.img_avatar {
-  margin-left: -70px;
+.detail {
+  color: #fff;
+}
+.detail .column .img_avatar {
+  margin: 20px;
+  width: 200px;
+  padding-right: 10px;
+}
+.detail .column .dl {
+  padding-left: 10px;
 }
 </style>
