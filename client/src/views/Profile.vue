@@ -119,5 +119,9 @@ p{
   .button.is-primary{
     width: 90px;
   }
+  .container {
+    padding: 15px;
+    width: 100%;
+  }
 }
 </style>

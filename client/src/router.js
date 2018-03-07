@@ -13,6 +13,7 @@ import History from './views/History.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',

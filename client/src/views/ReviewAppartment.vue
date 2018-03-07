@@ -33,13 +33,13 @@
                 </b-input>
             </b-field>
             <b-field  label="Rating District">
-                <star-rating v-model="ratingDistrict"></star-rating>
+                <star-rating v-model="ratingDistrict" v-bind:show-rating="false"></star-rating>
             </b-field>
             <b-field  label="Rating Building">
-                <star-rating v-model="ratingBuilding"></star-rating>
+                <star-rating v-model="ratingBuilding" v-bind:show-rating="false"></star-rating>
             </b-field>
             <b-field  label="Rating Landlord">
-                <star-rating v-model="ratingLandlord"></star-rating>
+                <star-rating v-model="ratingLandlord" v-bind:show-rating="false"></star-rating>
             </b-field>
             <button type="submit" class="button is-primary">Submit</button>
         </form>
@@ -114,6 +114,14 @@ export default {
 .container {
   width: 500px;
 }
+
+@media (max-width: 768px){
+    .container{
+        width: 100%;
+        padding: 15px;
+    }
+}
+
 h2 {
   color: #fff;
   font-size: 28px;

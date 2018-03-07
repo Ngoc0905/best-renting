@@ -1,5 +1,6 @@
 <template>
     <section class="container">
+        <h2>Signup</h2>
         <b-notification type="is-danger" has-icon v-if="error">
             {{ error.error }}
         </b-notification>
@@ -51,8 +52,15 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 .container{
     width: 500px;
+    padding-top: 100px;
+}
+@media (max-width: 768px) {
+    .container{
+        width: 100%;
+        padding: 15px;
+    }
 }
 </style>

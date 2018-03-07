@@ -90,8 +90,7 @@ export default {
   background-image: url("./assets/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  height: 900px;
-  background-position: 0 -150px;
+  background-position: 0 -300px;
   z-index: -2;
 }
 
@@ -151,6 +150,15 @@ footer h3 {
 }
 form{
     margin-bottom: 20px;
+}
+h2 {
+  color: #fff;
+  font-size: 26px !important;
+  font-family: "Open Sans", Arial, sans-serif;
+  padding-bottom: 20px;
+}
+#grad{
+  min-height: calc(100vh - 400px);
 }
 </style>
 <style lang="scss">

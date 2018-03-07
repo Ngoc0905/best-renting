@@ -1,5 +1,6 @@
 <template>
     <section class="container" >
+        <h2>Login</h2>
         <b-notification type="is-danger" has-icon v-if="error">
             {{ error.error }}
         </b-notification>
@@ -19,7 +20,7 @@
         </b-field>
         <button class="button is-primary">Login</button>
         <div>
-            <router-link to="/signup">Click here if you don't have an account</router-link>
+            <router-link to="/signup" class="signup-url">Click here if you don't have an account</router-link>
         </div>
         </form>
     </section>
@@ -54,8 +55,21 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container{
     width: 500px;
+    padding-top: 100px;
+}
+.signup-url {
+    color: #fff;
+}
+.signup-url:hover{
+    color: rgb(66, 59, 168);
+}
+@media (max-width: 768px) {
+    .container{
+        width: 100%;
+        padding: 15px;
+    }
 }
 </style>

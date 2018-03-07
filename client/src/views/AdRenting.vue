@@ -81,6 +81,14 @@ export default {
 .container {
   width: 550px;
 }
+
+@media (max-width: 768px){
+    .container{
+        width: 100%;
+        padding: 15px;
+    }
+}
+
 h2{
   color: #fff;
   font-size: 28px;

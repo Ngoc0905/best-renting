@@ -1,61 +1,55 @@
 <template>
   <div class="container">
-    <div id="left">
-      <h2>Rating places</h2>
-    <SearchAutocomplete v-bind:lat="$route.params.lat" v-bind:lng="$route.params.lng" v-on:select="updateParamsAndReload"/>
-      <div id="reviews" v-if="results.length >0">
-        <nav class="panel">
-          <p class="panel-heading">
-            Result
-          </p>
-          <div class="panel-block total">
-            <div class="columns">
-              <div class="column">
-                <div class="bloc_moyenne">
-										<p>{{ total }} /5 <span class="fa fa-star bloc_moyenne_etoile etoile"></span></p>
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <h2>Rating places</h2>
+        <SearchAutocomplete v-bind:lat="$route.params.lat" v-bind:lng="$route.params.lng" v-on:select="updateParamsAndReload"/>
+        <div id="reviews" v-if="results.length >0">
+          <nav class="panel">
+            <p class="panel-heading">
+              Result
+            </p>
+            <div class="panel-block total">
+              <div class="columns">
+                <div class="column">
+                  <div class="bloc_moyenne">
+                      <p>{{ total }} / 5 <span class="fa fa-star bloc_moyenne_etoile etoile"></span></p>
+                  </div>
                 </div>
-              </div>
-              <div class="column">
-                <ul id="nl">
-                  <div class="sr">
-                    <li>District: </li><star-rating  v-model="totalRatingDistrict" increment="0.01" read-only="true"></star-rating>
-                  </div>
-                  <div class="sr">
-                    <li>Building: </li><star-rating  v-model="totalRatingBuilding" increment="0.01" read-only="true"></star-rating>
-                  </div>
-                  <div class="sr">
-                     <li>Landlord: </li><star-rating  v-model="totalRatingLandlord" increment="0.01" read-only="true"></star-rating>
-                  </div>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="panel-block detail">
-            <div class="columns" v-for="r in results" v-bind:key="r.id">
-              <div class="column is-one-quarter">
-                <img class="img_avatar" :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
-              </div>
-              <div class="cr columns">
-                <div class="column ">
-                  <ul class="dl">
-                    <li>District: </li><star-rating  v-model="r.ratingDistrict" increment="0.01" read-only="true"></star-rating>
-                    <li>Building: </li><star-rating  v-model="r.ratingBuilding" increment="0.01" read-only="true"></star-rating>
-                    <li>Landlord: </li><star-rating  v-model="r.ratingLandlord" increment="0.01" read-only="true"></star-rating>
+                <div class="column is-two-thirds">
+                  <ul id="nl">
+                    <li>District: <star-rating  v-model="totalRatingDistrict" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
+                    <li>Building: <star-rating  v-model="totalRatingBuilding" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
+                    <li>Landlord: <star-rating  v-model="totalRatingLandlord" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
                   </ul>
                 </div>
-                <div class="column is-haft">
+              </div>
+            </div>
+            <div class="panel-block detail" v-for="r in results" v-bind:key="r.id">
+              <div class="columns">
+                <div class="column">
+                  <img class="img_avatar" :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
+                </div>
+                <div class="column">
+                  <ul>
+                    <li>District: <star-rating  v-model="r.ratingDistrict" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="true"></star-rating></li>
+                    <li>Building: <star-rating  v-model="r.ratingBuilding" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="true"></star-rating></li>
+                    <li>Landlord: <star-rating  v-model="r.ratingLandlord" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="20" v-bind:read-only="true"></star-rating></li>
+                  </ul>
+                </div>
+                <div class="column">
                   <p>Name: {{ r.user.name}}</p>
                   <p>Comments: {{ r.comments }}</p>
                 </div>
               </div>
-              
             </div>
-          </div>
-        </nav>
+          </nav>
+        </div>
+      </div>
+      <div class="column">
+        <div id="myMap"></div>
       </div>
     </div>
-    <div id="myMap"></div>
-
   </div>
 </template>
 
@@ -126,7 +120,7 @@ export default {
     initGoogleMap() {
       var place = getQueryStringInformations(this.$route.query);
       if (place) {
-        this.updateParamsAndReload(place);
+        this.findReviews(place);
       } else {
         new google.maps.Map(document.getElementById("myMap"), {
           center: {
@@ -139,8 +133,13 @@ export default {
       }
     },
     updateParamsAndReload(place) {
+      this.$router.push({
+        name: "findrenting",
+        query: place
+      });
+    },
+    findReviews(place){
       api.getReviews(place).then(responseFromServer => {
-        console.log(responseFromServer);
         this.results = responseFromServer.data;
         let map = new google.maps.Map(document.getElementById("myMap"), {
           center: {
@@ -150,9 +149,7 @@ export default {
           scrollwheel: false,
           zoom: 11
         });
-
         this.results.forEach(r => {
-          console.log(r);
           new google.maps.Marker({
             position: {
               lat: r.address.lat,
@@ -183,19 +180,20 @@ function getQueryStringInformations(query) {
 }
 </script>
 
+<style>
+  #nl .vue-start-rating{
+    display: inline-block;
+  }
+</style>
+
 <style scoped>
 .container {
-  overflow: auto;
+  margin-bottom: 20px;
+  display: flex;
+  width: 100%;
 }
-h2 {
-  color: #fff;
-  font-size: 26px;
-  font-family: "Open Sans", Arial, sans-serif;
-  padding-bottom: 20px;
-}
+
 #left {
-  height: 500px;
-  float: left;
   width: 60%;
 }
 #left .total {
@@ -206,16 +204,24 @@ h2 {
 }
 #myMap {
   height: 300px;
-  float: right;
-  width: 30%;
   margin-top: 70px;
+  margin-left: auto;
 }
 #nl {
   color: #fff;
 }
-.sr {
+
+.columns {
+  width: 100%;
+}
+
+.column{
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.column:first-child{
   display: flex;
-  flex-wrap: nowrap;
 }
 
 .bloc_moyenne {
@@ -224,8 +230,8 @@ h2 {
   border-radius: 5px;
   width: 140px;
   padding: 10px 0 14px 0;
-  float: left;
   margin-top: 4px;
+  height: 68px;
 }
 
 .bloc_moyenne_etoile {
@@ -267,7 +273,10 @@ h2 {
   width: 200px;
   padding-right: 10px;
 }
-.detail .column .dl {
-  padding-left: 10px;
+
+@media (max-width: 768px) {
+  .columns {
+    margin: 0;
+  }
 }
 </style>

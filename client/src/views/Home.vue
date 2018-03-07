@@ -92,10 +92,9 @@ h2 {
 }
 @media (max-width: 768px) {
   .container {
-    padding-top: 50px;
+    padding: 50px 15px 70px 15px;
     max-width: 400px;
     text-align: center;
-    padding-bottom: 70px;
   }
   h1 {
     font-family: "Open Sans", Arial, sans-serif;

@@ -21,7 +21,7 @@
     </div>
   </div>
 
-   <div  class="navbar-menu" :class="{ 'is-active': isActive}">
+   <div class="navbar-menu" :class="{ 'is-active': isActive}">
     <div class="navbar-start">
       <router-link class="navbar-item letter menu" to="/findrenting" @click.native="isActive =false">Find Renting</router-link>
       <router-link class="navbar-item letter menu" to="/adrenting" @click.native="isActive=false">Renting</router-link>
@@ -114,6 +114,14 @@ export default {
   color: #4a4a4a;
 }
 
+.navbar-menu a.router-link-active{
+  border-bottom: 5px solid rgb(131, 4, 36);
+}
+
+.navbar-menu a:hover{
+  color: #4a4a4a;
+}
+
 .white-background {
   background-color: #fff;
   color: #4a4a4a;
@@ -124,6 +132,10 @@ export default {
 .white-background p,
 .white-background .logo {
   color: #4a4a4a !important;
+}
+
+.white-background .navbar-burger {
+  color: #4a4a4a;
 }
 
 .navbar-link::after {

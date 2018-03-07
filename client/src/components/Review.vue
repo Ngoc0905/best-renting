@@ -105,7 +105,6 @@ export default {
     };
   },
   mounted() {
-    console.log(this.detail);
   },
   methods: {
     remove() {
@@ -125,7 +124,6 @@ export default {
   },
   computed: {
     address_detail() {
-        console.log(this.detail);
       return `${this.detail.address.street_number} ${
         this.detail.address.route
       }, ${this.detail.address.city}, ${this.detail.address.country}`;
