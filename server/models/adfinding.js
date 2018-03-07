@@ -3,14 +3,17 @@ const { Schema } = mongoose;
 
 const AdFindingSchema = new Schema ({
     address: {
-        street_number: String,
-        route: String,
-        city: String,
-        region: String,
-        country: String,
-        postal: String,
-        lat: Number,
-        lng: Number
+        required: true,
+        type: {
+            street_number: String,
+            route: String,
+            city: String,
+            region: String,
+            country: String,
+            postal: String,
+            lat: Number,
+            lng: Number
+        }   
     },
     comments: String,
     contact: String,

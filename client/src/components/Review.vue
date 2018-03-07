@@ -1,17 +1,17 @@
 <template>
-    <div class="card">
-        <header class="card-header">
+    <b-collapse class="card" v-bind:open="false">
+        <div slot="trigger" slot-scope="props" class="card-header">
             <p class="card-header-title">
                 {{ address_detail }}
             </p>
-            <div class="actions-container">
+            <a class="card-header-icon">
                 <a class="button" @click="remove">
                     <i class="fas fa-trash-alt"></i>
                 </a>
                 <a :class="['button', {'hide':  isOnEdit}]" @click="edit"><i class="fas fa-edit"></i></a>
                 <a :class="['button', {'hide':  !isOnEdit}]" id="save" @click="saveEdit"><i class="far fa-save"></i></a>
-            </div>
-        </header>
+            </a>
+        </div>
         <div class="card-content">
             <div class="content">
                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -70,7 +70,7 @@
                 </table>
             </div>
         </div>
-    </div>
+    </b-collapse>
 </template>
 <style scoped>
 .actions-container {
@@ -109,20 +109,23 @@ export default {
   },
   methods: {
     remove() {
-        if(confirm("Do you want to delete this review?"))
-            this.$emit("remove", this.detail._id, '/reviews/');
+      if (confirm("Do you want to delete this review?"))
+        this.$emit("remove", this.detail._id, "/reviews/");
     },
     edit() {
       this.isOnEdit = true;
     },
     saveEdit() {
-      api.update(this.detail._id, this.detail, '/reviews/').then(responseFromServer => {
-        this.isOnEdit = false;
-      });
+      api
+        .update(this.detail._id, this.detail, "/reviews/")
+        .then(responseFromServer => {
+          this.isOnEdit = false;
+        });
     }
   },
   computed: {
     address_detail() {
+        console.log(this.detail);
       return `${this.detail.address.street_number} ${
         this.detail.address.route
       }, ${this.detail.address.city}, ${this.detail.address.country}`;

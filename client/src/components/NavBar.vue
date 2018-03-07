@@ -126,6 +126,14 @@ export default {
   color: #4a4a4a !important;
 }
 
+.navbar-link::after {
+  content: none;
+}
+
+.navbar-link .icon {
+  color: #000;
+}
+
 .logo {
   text-align: center;
   font-family: "Open Sans", Arial, sans-serif;

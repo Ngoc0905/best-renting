@@ -118,12 +118,6 @@ export default {
 .label {
   color: #fff !important;
 }
-#grad {
-  margin: 20px;
-}
-span {
-  color: #fff;
-}
 #rs {
   list-style-type: none;
   display: flex;
@@ -154,6 +148,9 @@ footer h3 {
   font-weight: bold;
   color: rgb(74, 74, 74);
   margin: 10px;
+}
+form{
+    margin-bottom: 20px;
 }
 </style>
 <style lang="scss">
