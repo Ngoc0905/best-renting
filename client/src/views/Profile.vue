@@ -22,7 +22,7 @@
                     <b-upload v-model="profile.avatar" @input="previewImage">
                         <a class="button is-primary">
                             <b-icon icon="upload"></b-icon>
-                            <span>Click to upload your picture</span>
+                            <span>Upload</span>
                         </a>
                     </b-upload>
                   </b-field>
@@ -101,7 +101,8 @@ export default {
 
 <style scoped>
 .container {
-  width: 900px;
+  padding-top: 10px;
+  width: 50%;
 }
 form {
   width: 100%;
@@ -113,6 +114,10 @@ img.avatar {
 }
 p{
   font-weight: bold;
-  
+}
+@media (max-width: 768px){
+  .button.is-primary{
+    width: 90px;
+  }
 }
 </style>

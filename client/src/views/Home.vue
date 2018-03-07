@@ -14,7 +14,7 @@
           <a href="#" v-scroll-to="{
             el: '#bloc_contenant',
             offset: -100
-          }" id="scroll-to-guide-btn" title="Comment fonctionne HappyRenting ?">Comment ça marche ?<br>
+          }" id="scroll-to-guide-btn" title="How it works Best renting ?">How it works ?<br>
           <span class="fa fa-chevron-down"></span></a>
         </div>
     </div>
@@ -110,6 +110,15 @@ h2 {
 }
 .review {
   padding: 20px 30px;
+}
+#btn_ccm{
+  padding-top: 20px;
+}
+#scroll-to-guide-btn, .fa-chevron-down {
+  color: #fff;
+}
+#scroll-to-guide-btn:hover, .fa-chevron-down:hover {
+  color: rgb(66, 59, 168);
 }
 </style>
 

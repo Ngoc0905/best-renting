@@ -111,6 +111,11 @@ export default {
 .container {
   width: 900px;
 }
+@media (max-width: 768px) {
+.container{
+  width: 300px;
+}
+}
 .panel-block ul li {
   margin: 10px 0;
 }

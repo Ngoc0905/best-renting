@@ -16,18 +16,38 @@
                 </div>
               </div>
               <div class="column">
-                <ul>
-                  <li>District: <star-rating v-model="totalRatingDistrict" increment="0.01" read-only="true"></star-rating></li>
-                  <li>Building: <star-rating v-model="totalRatingBuilding" increment="0.01" read-only="true"></star-rating></li>
-                  <li>Landlord: <star-rating v-model="totalRatingLandlord" increment="0.01" read-only="true"></star-rating></li>
+                <ul id="nl">
+                  <div class="sr">
+                    <li>District: </li><star-rating  v-model="totalRatingDistrict" increment="0.01" read-only="true"></star-rating>
+                  </div>
+                  <div class="sr">
+                    <li>Building: </li><star-rating  v-model="totalRatingBuilding" increment="0.01" read-only="true"></star-rating>
+                  </div>
+                  <div class="sr">
+                     <li>Landlord: </li><star-rating  v-model="totalRatingLandlord" increment="0.01" read-only="true"></star-rating>
+                  </div>
+                  
+                 
                 </ul>
               </div>
             </div>
           </div>
           <div class="panel-block">
-            <div v-for="r in results" v-bind:key="r.id">
-             <img :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
-             {{ r.user.email}}{{ r.comments }}
+            <div class="columns" v-for="r in results" v-bind:key="r.id">
+              <div class="column is-one-quarter">
+                <img class="img_avatar" :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
+              </div>
+              <div class="column is-one-quarter">
+                <ul>
+                  <li>District: </li>{{r.ratingDistrict}}
+                  <li>Building: </li>{{r.ratingBuilding}}
+                  <li>Landlord: </li>{{r.ratingLandlord}}
+                </ul>
+              </div>
+              <div class="column">
+                <p>{{ r.user.name}}</p>
+                <p>{{ r.comments }}</p>
+              </div>
             </div>
           </div>
         </nav>
@@ -55,28 +75,42 @@ export default {
       var arrRatingDistrict = this.results.map(review => {
         return review.ratingDistrict;
       });
-      return parseFloat((
-        arrRatingDistrict.reduce((a, b) => a + b, 0) / arrRatingDistrict.length
-      ).toFixed(2));
+      return parseFloat(
+        (
+          arrRatingDistrict.reduce((a, b) => a + b, 0) /
+          arrRatingDistrict.length
+        ).toFixed(2)
+      );
     },
     totalRatingBuilding() {
       var arrRatingBuilding = this.results.map(review => {
         return review.ratingBuilding;
       });
-      return parseFloat((
-        arrRatingBuilding.reduce((a, b) => a + b, 0) / arrRatingBuilding.length
-      ).toFixed(2));
+      return parseFloat(
+        (
+          arrRatingBuilding.reduce((a, b) => a + b, 0) /
+          arrRatingBuilding.length
+        ).toFixed(2)
+      );
     },
     totalRatingLandlord() {
       var arrRatingLandlord = this.results.map(review => {
         return review.ratingLandlord;
       });
-      return parseFloat((
-        arrRatingLandlord.reduce((a, b) => a + b, 0) / arrRatingLandlord.length
-      ).toFixed(2));
+      return parseFloat(
+        (
+          arrRatingLandlord.reduce((a, b) => a + b, 0) /
+          arrRatingLandlord.length
+        ).toFixed(2)
+      );
     },
-    total(){
-      return ((this.totalRatingDistrict + this.totalRatingBuilding + this.totalRatingLandlord) / 3).toFixed(1)
+    total() {
+      return (
+        (this.totalRatingDistrict +
+          this.totalRatingBuilding +
+          this.totalRatingLandlord) /
+        3
+      ).toFixed(1);
     }
   },
   watch: {
@@ -99,7 +133,7 @@ export default {
             lng: 2.3522219000000177
           },
           scrollwheel: false,
-          zoom: 7
+          zoom: 9
         });
       }
     },
@@ -151,10 +185,8 @@ function getQueryStringInformations(query) {
 <style scoped>
 .container {
   overflow: auto;
-  padding: 50px;
-  
 }
-h2{
+h2 {
   color: #fff;
   font-size: 26px;
   font-family: "Open Sans", Arial, sans-serif;
@@ -163,8 +195,7 @@ h2{
 #left {
   height: 500px;
   float: left;
-  width: 49%;
-  padding-left: 50px;
+  width: 60%;
 }
 #reviews {
   padding-top: 20px;
@@ -172,10 +203,17 @@ h2{
 #myMap {
   height: 300px;
   float: right;
-  width: 500px;
-  margin-top: 50px;
-  margin-right: 50px;
+  width: 30%;
+  margin-top: 70px;
 }
+#nl {
+  color: #fff;
+}
+.sr {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .bloc_moyenne {
   border: 1px solid #f7b000;
   background-color: #fff7e8;
@@ -213,8 +251,11 @@ h2{
 .bloc_moyenne_details ul li {
   float: left;
 }
-.panel-heading{
+.panel-heading {
   font-size: 20px;
   font-family: "Open Sans", Arial, sans-serif;
+}
+.img_avatar {
+  margin-left: -70px;
 }
 </style>

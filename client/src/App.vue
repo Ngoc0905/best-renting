@@ -11,8 +11,34 @@
     <footer class="footer">
       <div class="container">
         <div class="content has-text-centered">
+          <div class="columns" id="letter">
+            <div class="column" >
+              <a href="#">ABOUT US</a> 
+            </div>
+            <div class="column">
+              <a href="#">AGENT SUPPORT</a> 
+            </div>
+            <div class="column">
+              <a href="#">TENANTS INFORMATIONS</a> 
+            </div>
+            <div class="column">
+              <a href="#">PRIVACY/TERMS</a> 
+            </div>
+            <div class="column">
+              <a href="#">CONTACT US</a> 
+            </div>
+          </div>
+          <div id="rs" class="columns">
+            <h3>Join us</h3>
+            <div id="icon">
+              <a href="#" title="Find us on Facebook"><i class="fab fa-facebook-square"></i></a>
+              <a href="#" title="Find us on LinkedIn"><i class="fab fa-twitter-square"></i></a>
+              <a href="#" title="Find us on LinkedIn"><i class="fab fa-linkedin"></i></a>
+              <a href="#" title="Find us on Youtube"><i class="fab fa-youtube-square"></i></a>
+            </div>
+          </div>
           <p>
-            <strong>Website " Best- Renting"</strong> by Ngoc Le 2018
+            <strong>@2018 Website "Best- Renting"</strong> created by BICH Ngoc LE
           </p>
         </div>
       </div>
@@ -57,7 +83,6 @@ export default {
 };
 </script>
 <style>
-
 #background {
   position: fixed;
   top: 0;
@@ -65,7 +90,7 @@ export default {
   right: 0;
   bottom: 0;
   background-image: url("./assets/background.jpg");
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 900px;
   background-position: 0 -150px;
@@ -73,17 +98,17 @@ export default {
 }
 
 @media (max-width: 768px) {
-  #background{
+  #background {
     background-position: 50% 0;
   }
 }
 
 @media (max-width: 1366px) {
-  #background{
-  background-position: 0 -300px;
+  #background {
+    background-position: 0 -200px;
   }
 }
-#overlay{
+#overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -94,6 +119,43 @@ export default {
 }
 .label {
   color: #fff !important;
+}
+#grad {
+  margin: 20px;
+}
+span {
+  color: #fff;
+}
+#rs {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+#icon {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+#icon a {
+  font-size: 30px;
+ padding-left: 20px;
+}
+#letter a{
+  letter-spacing: 0.2px;
+  transform: scale(1, 0.8);
+  font-weight: 900;
+  color: rgb(74, 74, 74);
+}
+#letter a:hover {
+  color: rgb(89, 89, 185);
+}
+footer h3 {
+  letter-spacing: 0.2px;
+  transform: scale(1, 0.8);
+  font-weight: bold;
+  color: rgb(74, 74, 74);
+  margin: 10px;
 }
 </style>
 <style lang="scss">
