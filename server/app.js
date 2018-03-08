@@ -14,9 +14,10 @@ const {
 } = require('passport-jwt');
 const cors = require('cors');
 
-mongoose.connect('mongodb://localhost/best-renting');
+require("dotenv").config();
 
-const index = require('./routes/index');
+mongoose.connect(process.env.MONGODB_URI);
+const history = require('express-history-api-fallback');
 const users = require('./routes/users');
 const authRoutes = require('./routes/auth');
 const reviewsRoutes = require('./routes/reviews');
@@ -65,13 +66,16 @@ app.get(
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+
 app.use('/api', users);
 app.use('/api', authRoutes);
 app.use('/api', reviewsRoutes);
 app.use('/api', adrentingsRoutes);
 app.use('/api', adfindingsRoutes);
 
+const clientRoot = path.join(__dirname, '../client/dist');
+app.use('/', express.static(clientRoot));
+app.use(history('index.html', { root: clientRoot }));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

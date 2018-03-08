@@ -9,7 +9,7 @@
             <p class="panel-heading">
               Result
             </p>
-            <div class="panel-block total">
+            <div class="panel-block" id="total">
               <div class="columns">
                 <div class="column">
                   <div class="bloc_moyenne">
@@ -18,9 +18,9 @@
                 </div>
                 <div class="column is-two-thirds">
                   <ul id="nl">
-                    <li>District: <star-rating  v-model="totalRatingDistrict" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
-                    <li>Building: <star-rating  v-model="totalRatingBuilding" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
-                    <li>Landlord: <star-rating  v-model="totalRatingLandlord" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="30" v-bind:read-only="true"></star-rating></li>
+                    <li>District: <star-rating  v-model="totalRatingDistrict" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="50" v-bind:read-only="true"></star-rating></li>
+                    <li>Building: <star-rating  v-model="totalRatingBuilding" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="50" v-bind:read-only="true"></star-rating></li>
+                    <li>Landlord: <star-rating  v-model="totalRatingLandlord" v-bind:increment="0.01" v-bind:show-rating="false" v-bind:star-size="50" v-bind:read-only="true"></star-rating></li>
                   </ul>
                 </div>
               </div>
@@ -192,11 +192,7 @@ function getQueryStringInformations(query) {
   display: flex;
   width: 100%;
 }
-
-#left {
-  width: 60%;
-}
-#left .total {
+#total {
   background-color: rgba(194, 180, 180, 0.623);
 }
 #reviews {

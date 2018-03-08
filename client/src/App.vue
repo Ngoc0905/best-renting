@@ -96,7 +96,7 @@ export default {
 
 @media (max-width: 768px) {
   #background {
-    background-position: 50% 0;
+    background-position: 0 50% ;
   }
 }
 
