@@ -93,6 +93,7 @@ export default {
         .then(responseFromServer => {
           this.isSucceeded = true;
           this.$root.$emit('avatarChanged', responseFromServer.data.avatar);
+          window.scrollTo(0, 0);
         });
     }
   }
