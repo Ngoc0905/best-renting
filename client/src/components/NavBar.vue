@@ -75,7 +75,7 @@ export default {
       if (!this.avatar) return null;
       return `http://localhost:3000${this.avatar}`;
     }
-  },
+  },//
   methods: {
     logout() {
       api.logout();
