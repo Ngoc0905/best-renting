@@ -1,0 +1,6 @@
+{
+  "name": "",
+  "version": "",
+  "postinstall": "cd server && npm install",
+ "start": "cd server && npm start" 
+}
