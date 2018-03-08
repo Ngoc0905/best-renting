@@ -48,7 +48,6 @@ export default {
       this.address = place;
     },
      onCloseNotification(){
-        console.log('onCloseNotification');
         this.isSentSuccessfully = false;
         this.$router.go(0);
     },
@@ -62,6 +61,11 @@ export default {
       };
       api.saveAdFinding(adFinding).then(responseFromServer => {
         this.isSentSuccessfully = true;
+        window.scrollTo(0, 0);
+        this.rentprice = null;
+        this.comments = null;
+        this.contact = null;
+        this.daterent = null;
       });
     }
   }

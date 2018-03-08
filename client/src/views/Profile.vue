@@ -107,7 +107,9 @@ export default {
 form {
   width: 100%;
 }
-
+.panel {
+  margin-bottom: 20px;
+}
 img.avatar {
   width: 160px;
   height: 160px;

@@ -73,7 +73,7 @@ export default {
   computed: {
     imageSrc() {
       if (!this.avatar) return null;
-      return `http://localhost:3000${this.avatar}`;
+      return this.avatar;
     }
   },//
   methods: {

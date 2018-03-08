@@ -105,6 +105,16 @@ export default {
 
       api.saveReview(review).then(responseFromServer => {
         this.isSentSuccessfully = true;
+        window.scrollTo(0, 0);
+        this.address = null;
+        this.ratingDistrict = 3;
+        this.ratingBuilding = 3;
+        this.ratingLandlord = 3;
+        this.number = null;
+        this.floor = null;
+        this.building = null;
+        this.reviewprice = null;
+        this.comments = null;
       });
     }
   }
@@ -115,11 +125,11 @@ export default {
   width: 500px;
 }
 
-@media (max-width: 768px){
-    .container{
-        width: 100%;
-        padding: 15px;
-    }
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
 }
 
 h2 {

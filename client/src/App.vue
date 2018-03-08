@@ -64,7 +64,6 @@ export default {
     }
 
     this.$root.$on("avatarChanged", data => {
-      console.log("data", data);
       this.getUserImage(data);
     });
   },
@@ -91,19 +90,13 @@ export default {
   background-image: url("./assets/background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: 0 -300px;
+  background-position: center -250px;
   z-index: -2;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #background {
-    background-position: 0 50% ;
-  }
-}
-
-@media (max-width: 1366px) {
-  #background {
-    background-position: 0 -250px;
+    background-position: center -100px !important;
   }
 }
 #overlay {
@@ -131,9 +124,9 @@ export default {
 
 #icon a {
   font-size: 30px;
- padding-left: 20px;
+  padding-left: 20px;
 }
-#letter a{
+#letter a {
   letter-spacing: 0.2px;
   transform: scale(1, 0.8);
   font-weight: 900;
@@ -149,8 +142,8 @@ footer h3 {
   color: rgb(74, 74, 74);
   margin: 10px;
 }
-form{
-    margin-bottom: 20px;
+form {
+  margin-bottom: 20px;
 }
 h2 {
   color: #fff;
@@ -158,15 +151,11 @@ h2 {
   font-family: "Open Sans", Arial, sans-serif;
   padding-bottom: 20px;
 }
-#grad{
+#grad {
   min-height: calc(100vh - 400px);
 }
 </style>
-<style lang="scss">
-@import "~bulma/sass/utilities/_all";
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
-</style>
+
 
 
 

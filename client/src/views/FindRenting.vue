@@ -188,7 +188,7 @@ function getQueryStringInformations(query) {
 
 <style scoped>
 .container {
-  margin-bottom: 20px;
+  margin-bottom: 200px;
   display: flex;
   width: 100%;
 }

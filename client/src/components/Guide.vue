@@ -3,7 +3,7 @@
   <section id="bloc_contenant">
     <div class="content columns">
       <div class="column">
-          <h1>I'm tenant</h1>
+          <h1>I'm a tenant</h1>
           <div class="i-letter">
             <i class="far fa-arrow-alt-circle-right"></i><h4>Review my previous and current appartment</h4>
           </div>
@@ -26,7 +26,7 @@
           <img src="../assets/owner.jpg" alt="">
       </div>
       <div class="column">
-          <h1>I'm owner</h1>
+          <h1>I'm a owner</h1>
           <div class="i-letter">
             <i class="far fa-arrow-alt-circle-right"></i><h4>Post my announcement to rent my apartment</h4>
           </div>

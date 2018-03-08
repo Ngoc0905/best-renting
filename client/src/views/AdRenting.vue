@@ -54,10 +54,9 @@ export default {
     onSelectAddress(place) {
       this.address = place;
     },
-     onCloseNotification(){
-        console.log('onCloseNotification');
-        this.isSentSuccessfully = false;
-        this.$router.go(0);
+    onCloseNotification() {
+      this.isSentSuccessfully = false;
+      this.$router.go(0);
     },
     onSubmit() {
       var adRenting = {
@@ -71,6 +70,14 @@ export default {
       };
       api.saveAdRenting(adRenting).then(responseFromServer => {
         this.isSentSuccessfully = true;
+        window.scrollTo(0, 0);
+        this.address = null;
+        this.number = null;
+        this.floor = null;
+        this.building = null;
+        this.rentprice = null;
+        this.description = null;
+        this.contact = null;
       });
     }
   }
@@ -82,14 +89,14 @@ export default {
   width: 550px;
 }
 
-@media (max-width: 768px){
-    .container{
-        width: 100%;
-        padding: 15px;
-    }
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
 }
 
-h2{
+h2 {
   color: #fff;
   font-size: 28px;
   font-family: "Open Sans", Arial, sans-serif;
