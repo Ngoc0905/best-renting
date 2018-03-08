@@ -56,7 +56,7 @@ export default {
   computed: {
     imageSrc() {
       if (this.profile.avatar)
-        return `/${this.profile.avatar}`;
+        return this.profile.avatar;
       return null;
     }
   },

@@ -28,7 +28,7 @@
             <div class="panel-block detail" v-for="r in results" v-bind:key="r.id">
               <div class="columns">
                 <div class="column">
-                  <img class="img_avatar" :src="'http://localhost:3000'+ r.user.avatar" alt="avatar"> 
+                  <img class="img_avatar" :src="r.user.avatar" alt="avatar"> 
                 </div>
                 <div class="column">
                   <ul>
