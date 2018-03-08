@@ -1,8 +1,9 @@
 {
   "name": "app",
   "version": "",
-  "postinstall": "cd server && npm install",
-  "scripts": {
+  "scripts": {    
+    "postinstall": "cd server && npm install",
     "start": "cd server && npm start"
+
   } 
 }
