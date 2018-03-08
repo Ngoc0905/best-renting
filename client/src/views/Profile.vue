@@ -56,7 +56,7 @@ export default {
   computed: {
     imageSrc() {
       if (this.profile.avatar)
-        return `http://localhost:3000${this.profile.avatar}`;
+        return `/${this.profile.avatar}`;
       return null;
     }
   },

@@ -64,6 +64,7 @@ export default {
     }
 
     this.$root.$on("avatarChanged", data => {
+      console.log("data", data);
       this.getUserImage(data);
     });
   },
